@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)https://matlabacademy.mathworks.com/v1/portal.html?course=gettingstarted#chapter=2v1&lesson=3&section=1 -->
+<html class="dj_webkit dj_chrome dj_contentbox" lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid:not(.vjs-audio-only-mode) {
+        padding-top: 56.25%
+      }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>MATLAB Onramp</title>
+
+    <style data-tippy-stylesheet="">.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}</style><link rel="shortcut icon" href="https://matlabacademy.mathworks.com/favicon.ico">
+    <link href="./datafile_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="./datafile_files/training.webwidget.css">
+    <link rel="stylesheet" href="./datafile_files/training.motw.app.css">
+    <link rel="stylesheet" href="./datafile_files/training.app.css">
+
+    <link rel="stylesheet" href="./datafile_files/omk6upx.css">
+
+    <script src="./datafile_files/bat.js.Download" async=""></script><script>
+        digitalData = {
+            pageInstanceID: document.title,
+            page:{
+                pageInfo:{
+                    destinationURL: document.location.href
+                },
+                category:{
+                    primaryCategory: "matlabacademy",
+                    subCategory1: "matlabacademy/" + "gettingstarted",
+                    pageType: "mlac"
+                },
+                attributes:{
+                    descriptonCode:"mlac",
+                    courseName: "gettingstarted",
+                    fullCourseName: "MATLAB Onramp"
+                }
+            }
+        };
+    </script>
+
+    <script src="./datafile_files/jquery-latest.js.Download"></script>
+    <script src="./datafile_files/bootstrap.min.js.Download"></script>
+
+    <!-- Currently needs to be in head tag -->
+    <script async="async" type="text/javascript" src="./datafile_files/satelliteLib-e8d23c2e444abadc572df06537e2def59c01db09.js.Download"></script>
+
+    <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="initial-scale=1.0">
+
+<script src="./datafile_files/AppMeasurement.min.js.Download" async=""></script><script src="./datafile_files/AppMeasurement_Module_ActivityMap.min.js.Download" async=""></script><script src="./datafile_files/RC7b35c41fa96d4374855b047fbc43ee8e-source.min.js.Download" async=""></script><script src="./datafile_files/RC54039db8749d48989234340e82d71c68-source.min.js.Download" async=""></script><script src="./datafile_files/RCbbe85c34ba1244f3a4687e901b2555b7-source.min.js.Download" async=""></script><script src="./datafile_files/343102867.js.Download" type="text/javascript" async="" data-ueto="ueto_f1bf86e055"></script></head>
+<body class="tundra hideFocusOutline mw-theme-light" data-content="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/" style="color-scheme: light;">
+
+<div id="trainingApp">
+    <div id="courseView" widgetid="courseView"> <button id="skip_link" class="skip_link sr-only" data-dojo-attach-point="skipLink"> Direkt zum Inhalt </button> <div id="courseViewport" data-dojo-attach-point="courseViewport"> <div id="contentArea"> <header> <div class="academyHeader"> <div class="headerElement leftColumn"> <button id="logo" data-dojo-attach-point="logoDiv" data-test-id="btnExitCourse"><span class="icon-arrow-rounded-left exitSpan"></span><span style="text-transform: uppercase; font-size: 12px; letter-spacing: 0;">Kurs verlassen</span></button> </div> <div class="headerElement middleColumn"> <button id="courseTitle" data-dojo-attach-point="courseTitleDiv" disabled=""><h1 id="courseHeader" title="MATLAB Onramp">MATLAB Onramp</h1></button> <div id="courseProgressHeader" data-dojo-attach-point="courseProgressHeaderDiv" style="">(8% Abgeschlossen)</div> </div> <div class="headerElement rightColumn"> <div id="userName" data-dojo-attach-point="userNameDiv" style=""><span>Syed Muhammad Abis Rizvi</span></div> <button id="userMenu" class="sectionIcon icon-account floatingMenuToggleButton noselect" aria-label="Benutzermenü" data-dojo-attach-point="userMenuDiv" style="" aria-expanded="false"> <div class="dijitContentPane userMenu right white floatingMenu" id="uniqName_1_1" widgetid="uniqName_1_1" role="menu" tabindex="-1" style="display: none;"><div class="floatingMenuPointer"></div><div class="dijitContentPane" id="dijit_layout_ContentPane_1" widgetid="dijit_layout_ContentPane_1"><ul class="userMenuList"><li class="logoutMenuItem" data-test-id="progressReport"><a target="_blank" href="https://matlabacademy.mathworks.com/progress/report.html?course=gettingstarted&amp;language=en&amp;release=v1" data-dropdownindex="0">Fortschrittsbericht herunterladen</a></li><li class="logoutMenuItem"><button data-test-id="logoutBtn" data-dropdownindex="1">Abmelden</button></li></ul></div></div></button> <button id="helpMenu" class="sectionIcon icon-help-circle floatingMenuToggleButton noselect" aria-label="Hilfemenü" data-dojo-attach-point="helpMenuDiv" style="" aria-expanded="false"> <div class="dijitContentPane helpMenu right white floatingMenu" id="uniqName_1_2" widgetid="uniqName_1_2" role="menu" tabindex="-1" style="display: none;"><div class="floatingMenuPointer"></div><div class="dijitContentPane" id="dijit_layout_ContentPane_2" widgetid="dijit_layout_ContentPane_2"><ul><li><a data-udc="ResourcesMenu.ReportProblem" target="_blank" href="https://www.mathworks.com/support/contact_us.html" data-dropdownindex="0">Support kontaktieren</a></li><li><a data-udc="ResourcesMenu.CourseFiles" target="_blank" href="https://lcms-files.mathworks.com/content/file/75184b68-1e92-45a7-a0f1-7e5bbec95a10/gettingstarted_course_files.zip?versionId=HZkO1PwCU_HnhTqwGdqxTVQOUgBigDJe" data-dropdownindex="1">Kursdateien herunterladen</a></li><li><a data-udc="ResourcesMenu.QuickReference" target="qrg" href="https://matlabacademy.mathworks.com/artifacts/quick-reference.html?course=gettingstarted&amp;language=en&amp;release=v1" data-dropdownindex="2">Kurs-Schnellreferenz</a></li><li><a data-udc="ResourcesMenu.GiveUsFeedback" href="https://matlabacademy.mathworks.com/v1/portal.html?course=gettingstarted#" data-dropdownindex="3">Geben Sie uns Feedback</a></li></ul></div></div></button> <span class="headernav_matrix" id="headernav_matrix" data-dojo-attach-point="matrixMenuSpan" style="" aria-expanded="false"><mw-matrix><!---->
+                <button type="button" class="waffle" aria-label="MathWorks App Menu" aria-haspopup="menu" aria-controls="matrix_menu_container" aria-expanded="false">
+                    <span class="icon-matrix">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 19.5 19.5">
+                            <path d="M3.8,4.5H.8c-.4,0-.8-.3-.8-.8V.8c0-.4.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M18.8,4.5h-3c-.5,0-.8-.3-.8-.8V.8c0-.4.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M11.2,4.5h-3c-.5,0-.8-.3-.8-.8V.8c0-.4.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M3.8,19.5H.8c-.4,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M18.8,19.5h-3c-.5,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M11.2,19.5h-3c-.5,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M3.8,12H.8c-.4,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M18.8,12h-3c-.5,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                            <path d="M11.2,12h-3c-.5,0-.8-.3-.8-.8v-3c0-.5.3-.8.8-.8h3c.5,0,.8.3.8.8v3c0,.5-.3.8-.8.8Z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <div id="matrix_menu_container" class="matrix_container mw_matrix_bs_3 mw_matrix_collapse add_scrollable">
+                    <mw-matrix-content bsversion="bs3" lang="de" tier="PRODUCT" env="prod" host="https://www.mathworks.com">
+                    <!---->
+          <nav role="menu" class="matrix_content">
+              <ul role="presentation" class="list-unstyled matrix_links_primary">
+                <!--?lit$47262292$--><!---->
+                  <li role="presentation" class="" key="0">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://matlab.mathworks.com/" aria-label="MATLAB" id="matrix_link_matlab_home">
+                      <img src="./datafile_files/ico-matrix-matlabonline.svg" alt="MATLAB">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->MATLAB</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="1">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/help/" aria-label="Hilfe-Center" id="matrix_link_help_center">
+                      <img src="./datafile_files/ico-matrix-helpcenter.svg" alt="Hilfe-Center">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Hilfe-Center</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="2">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/" aria-label="MathWorks" id="matrix_link_mathworks_dotcom">
+                      <img src="./datafile_files/ico-matrix-mathworks.svg" alt="MathWorks">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->MathWorks</span>
+                    </a>
+                  </li>
+                <!---->
+              </ul>
+              <ul role="presentation" class="list-unstyled matrix_links_secondary">
+                <!--?lit$47262292$--><!---->
+                  <li role="presentation" class="" key="0">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/matlabcentral/answers/index" aria-label="MATLAB Answers" id="matrix_link_answers">
+                      <img src="./datafile_files/ico-matrix-answers.svg" alt="MATLAB Answers">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->MATLAB Answers</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="1">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/matlabcentral/fileexchange" aria-label="File Exchange" id="matrix_link_file_exchange">
+                      <img src="./datafile_files/ico-matrix-fileexchange.svg" alt="File Exchange">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->File Exchange</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="2">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/videos.html" aria-label="Videos" id="matrix_link_videos">
+                      <img src="./datafile_files/ico-matrix-videos.svg" alt="Videos">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Videos</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="3">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://matlabacademy.mathworks.com/" aria-label="Onlinekurse" id="matrix_link_online_training">
+                      <img src="./datafile_files/ico-matrix-onlinetraining.svg" alt="Onlinekurse">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Onlinekurse</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="4">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://blogs.mathworks.com/" aria-label="Blogs" id="matrix_link_blogs">
+                      <img src="./datafile_files/ico-matrix-blogs.svg" alt="Blogs">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Blogs</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="5">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/matlabcentral/cody" aria-label="Cody" id="matrix_link_cody">
+                      <img src="./datafile_files/ico-matrix-cody.svg" alt="Cody">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Cody</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="6">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://drive.mathworks.com/" aria-label="MATLAB Drive" id="matrix_link_matlab_drive">
+                      <img src="./datafile_files/ico-matrix-matlabdrive.svg" alt="MATLAB Drive">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->MATLAB Drive</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="7">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://thingspeak.com/" aria-label="ThingSpeak" id="matrix_link_thingspeak">
+                      <img src="./datafile_files/ico-matrix-thingspeak.svg" alt="ThingSpeak">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->ThingSpeak</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="8">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/support/bugreports/" aria-label="Bug Reports" id="matrix_link_bug_reports">
+                      <img src="./datafile_files/ico-matrix-bugreports.svg" alt="Bug Reports">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Bug Reports</span>
+                    </a>
+                  </li>
+                <!----><!---->
+                  <li role="presentation" class="" key="9">
+                    <a role="menuitem" class="svg_link" target="_blank" href="https://www.mathworks.com/matlabcentral/" aria-label="Community" id="matrix_link_community">
+                      <img src="./datafile_files/ico-matrix-community.svg" alt="Community">
+                      <span class="matrix_link_title"><!--?lit$47262292$-->Community</span>
+                    </a>
+                  </li>
+                <!---->
+              </ul>
+          </nav>
+        </mw-matrix-content>
+                </div>
+            </mw-matrix></span> </div> </div> </header> <div class="wra" data-dojo-attach-point="wraDiv" style="display: none;"><div class="wraView" id="dijit__WidgetsInTemplateMixin_0" widgetid="dijit__WidgetsInTemplateMixin_0" style="opacity: 0.6;"> <div class="wraTask" data-dojo-attach-point="wraTask"> <h3 data-dojo-attach-point="messageNode" style="display: none;"></h3> <div class="content" data-dojo-attach-point="contentNode"></div> </div> <div class="preloader" style="top: 100px; display: none;" data-dojo-attach-point="wraPreloaderContainer"><div id="dijit__WidgetsInTemplateMixin_1" widgetid="dijit__WidgetsInTemplateMixin_1"> <div class="busyOverlayContainer"> <div class="busyOverlay" data-dojo-attach-point="busyOverlay"><div class="mw-busyIndicator" data-dojo-attach-point="_busyOverlayNode" id="MW_utils_BusyOverlay_0" widgetid="MW_utils_BusyOverlay_0" style="display: none;"> <div class="underlayNode" data-dojo-attach-point="_underlayNode" style="z-index: 2000000000;"></div> <div class="spinnerBgPanel" tabindex="0" data-dojo-attach-point="_spinnerBgPanel"> <div class="spinnerNode" data-dojo-attach-point="_spinnerNode"></div> <div class="spinnerText" style="display: none;"><span></span></div></div> </div></div> <div class="busyOverlayMessage" data-dojo-attach-point="busyMessage" aria-live="assertive" aria-atomic="true"></div> </div> </div></div> </div></div> <div id="player" data-dojo-attach-point="playerDiv" style=""> <div id="contentPanes"> <div id="topNavigator" data-dojo-attach-point="topNavigatorDiv"> <mw-oc-hamburger-menu class="main-menu"><template shadowrootmode="open"><!---->
+            <div class="hamburger-menu-container">
+                <mw-oc-floating-menu><template shadowrootmode="open"><!---->
+            <slot name="button"></slot>
+            <div class="floating-menu with-tip" hidden="">
+                <!--?lit$47262292$-->
+            <mw-icon icon-id="navigationArrowNextUI" class="floating-menu-tip" icon-width="8" icon-height="8" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="navigationArrowNextUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 4L1 8V0L7 4Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                <div class="floating-menu-container" tabindex="-1">
+                    <slot name="container"></slot>
+                </div>
+            </div>
+        </template>
+                    <button class="hamburger-menu-btn" aria-expanded="false" slot="button" role="navigation" aria-label="Kursnavigation umschalten" aria-controls="course-navigation-1773138770174">
+                        <mw-icon icon-id="hamburgerMenuUI" icon-width="16" icon-height="16" class="hamburger-menu-icon floating-menu-target" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="16" width="16" data-test-id="hamburgerMenuUI"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="14" height="2" rx="0.5" fill="var(--mw-icon-object-primary, #616160)"></rect>
+<rect x="1" y="7" width="14" height="2" rx="0.5" fill="var(--mw-icon-object-primary, #616160)"></rect>
+<rect x="1" y="13" width="14" height="2" rx="0.5" fill="var(--mw-icon-object-primary, #616160)"></rect>
+</svg>
+</svg>
+            </template></mw-icon>
+                        <!--?lit$47262292$-->
+                    </button>
+                    <mw-oc-hamburger-menu-container slot="container" id="course-navigation-1773138770174"><template shadowrootmode="open"><!---->
+            <div class="hamburger-menu-container" aria-label="MATLAB Onramp Kursnavigation">
+                <div class="course-container">
+                    <!--?lit$47262292$--><div class="course-title"><!--?lit$47262292$-->MATLAB Onramp</div>
+                    <!--?lit$47262292$--><div class="course-progress"><!--?lit$47262292$-->8% abgeschlossen</div>
+                </div>
+                <div role="tree" class="modules-container">
+                    <!--?lit$47262292$--><!---->
+                <div class="module" role="group" aria-label="Course Overview">
+                    <mw-oc-titlepane level="1" completion-status="complete" default-active="false" position="1" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="1" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container complete"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->1. Course Overview</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="100% abgeschlossen"><!--?lit$47262292$-->100%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/5adba527-e472-49fd-b1f4-4049c49bea40/?section=6370706437112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container complete" aria-label="Abgeschlossen"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->Course Overview</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Commands">
+                    <mw-oc-titlepane level="1" completion-status="partial-complete" default-active="true" position="2" setsize="14" open=""><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container expanded" aria-expanded="true" aria-level="1" aria-posinset="2" aria-setsize="14">
+                <div class="titlepane-header expanded">
+                    <div class="completion-container partial-complete"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeExpandUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeExpandUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 2H4H8L4 6L0 2Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-open">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->2. Commands</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="50% abgeschlossen"><!--?lit$47262292$-->50%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/a1c872af-20d5-4ee6-a6cc-e4e1f80e0dd5/?section=85b1faba-450f-448d-9a76-5a3c61519af1.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container complete" aria-label="Abgeschlossen"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Enter Commands</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/cbd8475b-3fb7-41b5-a4e4-20dbb5c41020/?section=81b033ce-65bc-4d0c-a277-43529367c5d7.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container complete" aria-label="Abgeschlossen"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Name Variables</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/3e666508-87cf-49ce-98df-ca3b679d6237/?section=140f3f8b-c51c-4cd3-950d-20601ba182ed.json">
+                    <button role="treeitem" class="section-btn active" aria-current="true" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Save and Load Variables</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/a3b8699b-acf6-49ce-8155-fe9deb176013/?section=502d3871-11ef-4dae-a901-92b56f1ae5f9.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Use Built-in Functions and Constants</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="MATLAB Desktop and Editor">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="3" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="3" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->3. MATLAB Desktop and Editor</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/37f78dbf-c1c5-40ad-a42b-99246f94d718/?section=6370704369112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->MATLAB Desktop and Editor</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/83ec25a8-181c-4360-900b-192e3be86dff/?section=1e9ae818-88fa-4555-a610-650c481dd9ef.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->The MATLAB Editor</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/8edc5441-7715-4bf9-91ca-3ebdd4166ee8/?section=0d037bcb-3dda-440a-ac29-a8dc3b7db00f.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Run Scripts</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/290bb6c8-6cbc-4427-83b7-4c79387ad50e/?section=23fd8d3d-c122-4975-a278-43c5d42933c8.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Debug MATLAB Code</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Vectors and Matrices">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="4" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="4" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->4. Vectors and Matrices</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/6f42452e-ee9d-4acc-b0d3-0277305edc81/?section=0513f6bb-47a0-4089-ad77-1e4edb6995ba.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Manually Enter Arrays</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/5f29c644-1b3c-4b81-9b34-e7037d73f44c/?section=d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Create Evenly Spaced Vectors</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/15a42f79-3d60-4765-a79c-5fb962032ec6/?section=91c90395-7169-40b9-9ef7-3fb54b24f2d6.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Create Arrays with Functions</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Array Indexing and Modification">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="5" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="5" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->5. Array Indexing and Modification</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/ccfcff84-a840-4126-92a0-c677218a84c4/?section=6380156731112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->Indexing</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/127df890-a15c-4df5-9192-f0605171e9cf/?section=522260cd-b7b2-4163-983c-8df04f7dfd72.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Index into Arrays</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/3b566f53-a7ff-4120-9de7-07ad4fa73b07/?section=a15bb566-56b5-49c8-8c84-f86a0cea498e.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Extract Multiple Elements</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/937e3f0c-3549-4847-a3ff-22fbfbe4bfd0/?section=8a591ed5-d9f1-49a0-9550-c3f030e8600b.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Change Values in Arrays</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Array Calculations">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="6" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="6" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->6. Array Calculations</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/5b8bf9db-a19d-4c29-89bb-7ed1add4b2c9/?section=c09adb4b-c816-4197-855c-0a4d89abac0c.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Perform Array Operations on Vectors</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Function Calls">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="7" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="7" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->7. Function Calls</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/da042be7-c907-47a8-ab1f-3974b613a8f1/?section=829b88d4-e7b5-481e-b7a9-8e46566cdb49.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Request Multiple Outputs in Function Calls</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Documentation">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="8" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="8" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->8. Documentation</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/179c189e-78d7-4bda-a0e6-2daf60a5964a/?section=6370706628112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->MATLAB Documentation</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/94f55d87-2545-4ae0-945c-2a7dadfa71be/?section=bef49d79-8c73-420c-aba4-6f3baf81e875.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Use MATLAB Documentation</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Plots">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="9" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="9" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->9. Plots</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/053c88d1-7e91-4bd3-814c-728b48428ba6/?section=d37d69e0-39ea-4f08-943c-f66aeb090be2.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Plot Vectors</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/4a413802-30a4-41a0-9136-a02db8905709/?section=4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Annotate Plots</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Data Import">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="10" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="10" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->10. Data Import</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/ddcc687b-2054-415e-a4ad-5154782b7718/?section=6370707131112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->Import Tool</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/c02030b0-16a4-4eea-bf7e-ada105851aa5/?section=9f5d23a8-6717-4ad7-8d40-c482ff4631cb.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Import Data as a Table</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Logical Arrays">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="11" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="11" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->11. Logical Arrays</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/5393ccdc-2920-4bd7-831e-65be69487da2/?section=e59fc93d-5920-49c3-9590-1503d56928ce.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Relational Operators</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/24d6766a-b5c7-42a4-a2bf-ffe7f705e176/?section=6e813d3e-8711-430f-8768-931f7adb996f.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Logical Indexing</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Programming">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="12" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="12" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->12. Programming</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/ba18ca7c-0b32-4067-bea7-b388297d7b76/?section=6380158487112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->Conditional Statements</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/5336924d-3010-46d1-8729-ec63c32ae1cc/?section=a57a0419-62eb-4061-91b8-8cc999114276.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Decision Branching</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/8fa387f0-1c32-4e8d-b21e-56c0b6b4761a/?section=6380156428112">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-video" aria-label="Video"></span>
+                        <span><!--?lit$47262292$-->Repeat Code with Loops</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/6a2d9cba-6880-4183-a86c-aacfa09f2596/?section=80414411-ac8d-46d1-86e6-0c1e344b2680.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Write a For Loop</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Final Project">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="13" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="13" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->13. Final Project</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/53feb507-7185-4e14-b9f7-2df7895a5a3c/?section=91e5f023-6b5b-4ed5-b54a-437d3b7e2854.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Project - Stellar Motion</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/739d0c69-57ee-4a2f-82d2-46bca7bd1229/?section=95651580-7af3-492b-a6e2-62cf9e775b86.json">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-matlabInteraction" aria-label="MATLAB-Übung"></span>
+                        <span><!--?lit$47262292$-->Project - Compare Stellar Spectra</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!----><!---->
+                <div class="module" role="group" aria-label="Conclusion">
+                    <mw-oc-titlepane level="1" completion-status="not-started" default-active="false" position="14" setsize="14"><template shadowrootmode="open"><!---->
+            <div role="treeitem" tabindex="0" class="flex-container " aria-expanded="false" aria-level="1" aria-posinset="14" aria-setsize="14">
+                <div class="titlepane-header ">
+                    <div class="completion-container not-started"></div>
+                    <mw-icon icon-width="8" icon-height="8" class="expand-icon" icon-id="treeCollapseUI" icon-config="{}" svg-path=""><template shadowrootmode="open"><!---->
+            <!--?lit$47262292$--><svg fill="#00000000" height="8" width="8" data-test-id="treeCollapseUI"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 8L2 4V0L6 4L2 8Z" fill="var(--mw-icon-object-primary, #616160)"></path>
+</svg>
+</svg>
+            </template></mw-icon>
+                    <slot name="header"></slot>
+                </div>
+                <div class="titlepane-body body-closed">
+                    <slot name="body"></slot>
+                </div>
+            </div>
+        </template>
+                        <div slot="header">
+                            <div class="module-content">
+                                <div><!--?lit$47262292$-->14. Conclusion</div>
+                                <!--?lit$47262292$--><div class="progress" aria-label="0% abgeschlossen"><!--?lit$47262292$-->0%</div>
+                            </div>
+                        </div>
+                        <div slot="body">
+                            <div class="lessons-container">
+                                <!--?lit$47262292$--><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/73ab85d7-dd75-4499-b338-0a61c4b99db5/?section=f7062fd2-cf63-47c1-addf-0395ad030872.html">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-iframe" aria-label="Text"></span>
+                        <span><!--?lit$47262292$-->Summary</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/7dc7b42b-e34b-4f33-9b70-a47f59e02f4b/?section=7302d454-0675-46ab-8273-4f0aa46487df.html">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-iframe" aria-label="Text"></span>
+                        <span><!--?lit$47262292$-->Next Steps</span>
+                    </button>
+                </div>
+            <!----><!----><!----><!---->
+                <div class="section" id="https://matlabacademy-content.mathworks.com/4.89.1/v1/content/35d26794-54ea-46de-862b-f63580122378/?section=A">
+                    <button role="treeitem" class="section-btn " aria-current="false" aria-setsize="1" aria-posinset="1" aria-level="2">
+                        <span role="img" class="completion-container " aria-label="Unvollständig"></span>
+                        <span role="img" class="section-icon icon-training icon-survey" aria-label="Abschnitt"></span>
+                        <span><!--?lit$47262292$-->Survey</span>
+                    </button>
+                </div>
+            <!----><!---->
+                            </div>
+                        </div>
+                    </mw-oc-titlepane>
+                </div>
+            <!---->
+                </div>
+            </div>
+        </template>
+                    </mw-oc-hamburger-menu-container>
+                </mw-oc-floating-menu>
+            </div>
+        </template></mw-oc-hamburger-menu> <div id="sectionHeader" data-dojo-attach-point="sectionHeaderDiv"><span title="Commands &gt; Save and Load Variables"><b>Commands</b><span class="icon-arrow-open-right"></span><span>Save and Load Variables</span></span></div> <div id="sectionNavContainer" data-dojo-attach-point="sectionNavContainerDiv"><nav aria-label="Abschnitte navigieren" class="sectionNavigator" id="dijit__WidgetsInTemplateMixin_6" widgetid="dijit__WidgetsInTemplateMixin_6"> <button data-dojo-attach-point="previousButtonDiv" class="previousButton" style="cursor: pointer;"><span class="icon-arrow-open-left buttonIcon"></span><span>Zurück</span></button><button data-dojo-attach-point="nextButtonDiv" class="nextButton" style="cursor: pointer;"><span>Weiter</span><span class="icon-arrow-open-right buttonIcon"></span></button> </nav></div> </div> <div id="notificationStripContainer" data-dojo-attach-point="notificationStripContainerDiv"></div> <main data-dojo-attach-point="mainContainer" tabindex="-1"> <div id="content" data-dojo-attach-point="contentDiv" style="top: 32px; opacity: 1;"> <div class="" style="width: 100%; height: 100%;"><iframe id="matlabIframe" allow="camera;microphone;clipboard-read;clipboard-write;geolocation;fullscreen;display-capture;keyboard-map" style="width: 100%; height: 100%;" src="./datafile_files/index.html" title="Practice"></iframe></div><div class="dijitContentPane interactiveContentPane squirrelAway" id="dijit_layout_ContentPane_6" widgetid="dijit_layout_ContentPane_6"></div></div> </main> <div class="preloader" data-dojo-attach-point="coursePreloaderContainer" style="display: none;"><div id="dijit__WidgetsInTemplateMixin_5" widgetid="dijit__WidgetsInTemplateMixin_5"> <div class="busyOverlayContainer"> <div class="busyOverlay" data-dojo-attach-point="busyOverlay"><div class="mw-busyIndicator" data-dojo-attach-point="_busyOverlayNode" id="MW_utils_BusyOverlay_1" widgetid="MW_utils_BusyOverlay_1" style="display: none;"> <div class="underlayNode" data-dojo-attach-point="_underlayNode" style="z-index: 2000000000;"></div> <div class="spinnerBgPanel" tabindex="0" data-dojo-attach-point="_spinnerBgPanel"> <div class="spinnerNode" data-dojo-attach-point="_spinnerNode"></div> <div class="spinnerText" style="display: none;"><span></span></div></div> </div></div> <div class="busyOverlayMessage" data-dojo-attach-point="busyMessage" aria-live="assertive" aria-atomic="true"></div> </div> </div></div> <div aria-live="assertive" aria-atomic="true" class="sr-only" data-dojo-attach-point="announceDiv" id="statusAnnouncer">Abschnitt Practice wurde geladen</div> <div class="feedbackDiv"> <button class="feedbackButton btn btn_secondary" title="Geben Sie uns Feedback" data-test-id="feedbackBtn" data-dojo-attach-point="feedbackBtn" style="display: inline-block;"><span><span class="icon-feedback"></span> Geben Sie uns Feedback </span></button> <button class="icon-remove-circle icon_16 dismissFeedbackBtn" title="Feedback-Button ausblenden" data-test-id="dismissFeedbackBtn" data-dojo-attach-point="dismissFeedbackBtn" style="display: inline-block;" aria-label="Feedback-Button ausblenden"></button> </div> </div> </div> </div> </div> </div>
+</div>
+
+<script>
+        var dojoConfig = {
+            async: true,
+            has: {
+                "production": 1
+            },
+            map: {
+                "*": {
+                    "MW/Log": "mw-log/Log",
+                    "MW/dialog": "mw-dialog-utils",
+                    "MW/dnd": "mw-dnd",
+                    "MW/utils/HtmlUtils": "mw-utils/HtmlUtils",
+                    "MW/utils/InMemoryStore": "mw-utils/InMemoryStore",
+                    "MW/utils/Utils": "mw-utils/Utils",
+                    "mw-mixins": "mw-form/mixins",
+                    "mw-menu": "mw-form"
+                }
+            },
+            cacheBust: false,
+            locale: "de-de",
+            domain: "https:\/\/www.mathworks.com",
+            isRelease: true
+        };
+    </script>
+<script>
+        dojoConfig.blankGif = "https:\/\/matlabacademy-content.mathworks.com\/4.89.1\/dist-webpack\/images\/blank.gif";
+        dojoConfig.baseUrl = "https:\/\/matlabacademy-content.mathworks.com\/4.89.1";
+    </script>
+
+
+
+<script>
+    window.academyAppArgs = {
+        trainerEndpoint: "https:\/\/matlabacademy-content.mathworks.com\/4.89.1",
+        lrsContentPath: "https:\/\/matlabacademy.mathworks.com\/v1\/content\/",
+        courseReleaseStatus: "active",
+        latestReleaseURL: "https:\/\/matlabacademy.mathworks.com\/v1\/portal.html?course=gettingstarted",
+        mwEnvironment: null,
+        courseArtifactsFolder: "https:\/\/matlabacademy-content.mathworks.com\/4.55.1\/courseartifacts\/",
+        default_trainingaddon_path: "\/CourseData\/",
+        enableNextGenFeatures: true,
+        enableLMSFeatures: null,
+        isInstructor: false,
+        isLearner: false,
+        enableDarkMode: true,
+        useAuthNZ: true,
+        useValueEngine: true,
+        valueEngineEndpoint: "https:\/\/matlab.mathworks.com",
+        moshenvironment: "",
+        defaultResourceType: "mss",
+        defaultResourceEndpoint: "",
+        enableFeedback:  true,
+        catalog: {"meta":{"matlabRelease":"R2017a"},"courses":[{"title":"MATLAB Onramp","courseCode":"gettingstarted","courseType":"free","courseUri":"https:\/\/matlabacademy.mathworks.com\/v1\/portal.html?course=gettingstarted","lrsCourseCatalogFileUri":"https:\/\/matlabacademy.mathworks.com\/v1\/content\/catalog_gettingstarted.json","sectionCompleteCourseUri":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/gettingstarted\/en\/v1","language":"en","release":"v1","releaseStatus":"active","variant":"gettingStarted","hasZipFile":true,"courseFiles":"https:\/\/lcms-files.mathworks.com\/content\/file\/75184b68-1e92-45a7-a0f1-7e5bbec95a10\/gettingstarted_course_files.zip?versionId=HZkO1PwCU_HnhTqwGdqxTVQOUgBigDJe","customEnrollment":false,"showDetails":true,"hasQuickReference":true,"recommendChromium":false,"showTopNav":false,"chapters":[{"title":"Course Overview","description":"Familiarize yourself with the course.","objectives":"","conceptSequence":["5adba527-e472-49fd-b1f4-4049c49bea40"],"availableVersions":["1.2"],"duration":0,"lcmsDocumentId":"bb8d0cc8-f04f-45fb-934a-fb59fe04136c","lcmsSnapshotId":"45eb8225-25ba-43dd-a941-8dd2fda0170a","moduleDocumentId":"d3828364-0e4f-40eb-abb9-d8a7c379a852","version":"1.2"},{"title":"Commands","description":"Enter commands in MATLAB to perform calculations and create variables.","objectives":"","conceptSequence":["a1c872af-20d5-4ee6-a6cc-e4e1f80e0dd5","cbd8475b-3fb7-41b5-a4e4-20dbb5c41020","3e666508-87cf-49ce-98df-ca3b679d6237","a3b8699b-acf6-49ce-8155-fe9deb176013"],"availableVersions":["1.7"],"duration":0,"lcmsDocumentId":"8a69fc7f-c48d-4190-b553-dfd721a12445","lcmsSnapshotId":"9f6cb9f0-6343-4ac0-b2c4-c6ee5e5261a0","moduleDocumentId":"10b84805-49f0-4ba4-af14-6758ef66db07","version":"1.7"},{"title":"MATLAB Desktop and Editor","description":"Write and save your own MATLAB programs.","objectives":"","conceptSequence":["37f78dbf-c1c5-40ad-a42b-99246f94d718","83ec25a8-181c-4360-900b-192e3be86dff","8edc5441-7715-4bf9-91ca-3ebdd4166ee8","290bb6c8-6cbc-4427-83b7-4c79387ad50e"],"availableVersions":["1.5"],"duration":0,"lcmsDocumentId":"fe5e71f3-8ead-490c-91a9-edc8d18aeeea","lcmsSnapshotId":"c461bd79-8792-4193-aa68-799377a6e0e1","moduleDocumentId":"f821ef07-c7a4-4269-b37f-efe9884563d0","version":"1.5"},{"title":"Vectors and Matrices","description":"Create MATLAB variables that contain multiple elements.","objectives":"","conceptSequence":["6f42452e-ee9d-4acc-b0d3-0277305edc81","5f29c644-1b3c-4b81-9b34-e7037d73f44c","15a42f79-3d60-4765-a79c-5fb962032ec6"],"availableVersions":["1.3"],"duration":0,"lcmsDocumentId":"ace3b913-ad3a-442c-a093-ec0fe1956e5b","lcmsSnapshotId":"46ab8edc-c45e-4e8f-bc41-2276981871fc","moduleDocumentId":"b5926e93-713f-4965-8236-3ba7cb2f928a","version":"1.3"},{"title":"Array Indexing and Modification","description":"Use indexing to extract and modify rows, columns, and elements of MATLAB arrays.","objectives":"","conceptSequence":["ccfcff84-a840-4126-92a0-c677218a84c4","127df890-a15c-4df5-9192-f0605171e9cf","3b566f53-a7ff-4120-9de7-07ad4fa73b07","937e3f0c-3549-4847-a3ff-22fbfbe4bfd0"],"availableVersions":["1.9"],"duration":0,"lcmsDocumentId":"7923c4a0-e74e-411f-856c-d4868ac7eefa","lcmsSnapshotId":"ea590294-b85b-4ee6-8bef-eb38ba44816d","moduleDocumentId":"7d73bce2-912f-409e-9207-f26e23a59b0f","version":"1.9"},{"title":"Array Calculations","description":"Perform calculations on entire arrays at once.","objectives":"","conceptSequence":["5b8bf9db-a19d-4c29-89bb-7ed1add4b2c9"],"availableVersions":["1.2"],"duration":0,"lcmsDocumentId":"42942039-ae5e-404c-ba4c-b6351996fc6f","lcmsSnapshotId":"d57da957-15db-4170-b8ab-f38d23aeefb5","moduleDocumentId":"8e80c346-3ac6-4e97-85dd-649ac464591f","version":"1.2"},{"title":"Function Calls","description":"Call functions with multiple outputs.","objectives":"","conceptSequence":["da042be7-c907-47a8-ab1f-3974b613a8f1"],"availableVersions":["1.2"],"duration":0,"lcmsDocumentId":"518d0951-389c-4897-af1b-02635276dff6","lcmsSnapshotId":"7a3ce5e1-8c31-4874-9d07-0357e4904a24","moduleDocumentId":"d4f238ea-7ce1-4a56-a4de-99a03148435f","version":"1.2"},{"title":"Documentation","description":"Use the MATLAB documentation to learn more about MATLAB features.","objectives":"","conceptSequence":["179c189e-78d7-4bda-a0e6-2daf60a5964a","94f55d87-2545-4ae0-945c-2a7dadfa71be"],"availableVersions":["1.6"],"duration":0,"lcmsDocumentId":"d5c2e640-0fdc-461a-81a6-d7ec11c56fb0","lcmsSnapshotId":"6af3cd5d-83e4-47ea-abbc-8ae1c122ac68","moduleDocumentId":"cb219294-b3f9-46c7-ad75-a082e3f98cb2","version":"1.6"},{"title":"Plots","description":"Visualize variables using plotting functions.","objectives":"","conceptSequence":["053c88d1-7e91-4bd3-814c-728b48428ba6","4a413802-30a4-41a0-9136-a02db8905709"],"availableVersions":["1.9"],"duration":0,"lcmsDocumentId":"e6ac848f-3a1a-44ee-825c-fc865edc244b","lcmsSnapshotId":"acb7d355-5da5-4644-86ef-fdabe21cba2b","moduleDocumentId":"173f2db1-2e0e-4dfc-8ee0-ed3b75c1b252","version":"1.9"},{"title":"Data Import","description":"Bring data from external files into MATLAB.","objectives":"","conceptSequence":["ddcc687b-2054-415e-a4ad-5154782b7718","c02030b0-16a4-4eea-bf7e-ada105851aa5"],"availableVersions":["1.8"],"duration":0,"lcmsDocumentId":"6accd2c9-91f6-4d16-9a36-e51e0cf848ba","lcmsSnapshotId":"8cc933c4-3f3d-457c-a895-3529170da31e","moduleDocumentId":"7f37ee12-8575-4a0c-9fbe-26b1a339d4a2","version":"1.8"},{"title":"Logical Arrays","description":"Use relational operators and logical indexing to extract elements of interest from MATLAB arrays.","objectives":"","conceptSequence":["5393ccdc-2920-4bd7-831e-65be69487da2","24d6766a-b5c7-42a4-a2bf-ffe7f705e176"],"availableVersions":["1.1","2.1"],"duration":0,"lcmsDocumentId":"1d17fda6-0390-49ce-8a00-6441ec81ef85","lcmsSnapshotId":"e70b1b90-32bc-46fc-b7df-d059fb06f034","moduleDocumentId":"c699f219-694a-4007-8040-2675728878c4","version":"2.1"},{"title":"Programming","description":"Write programs that execute code based on specified conditions.","objectives":"","conceptSequence":["ba18ca7c-0b32-4067-bea7-b388297d7b76","5336924d-3010-46d1-8729-ec63c32ae1cc","8fa387f0-1c32-4e8d-b21e-56c0b6b4761a","6a2d9cba-6880-4183-a86c-aacfa09f2596"],"availableVersions":["1.5","2"],"duration":0,"lcmsDocumentId":"20a40c59-73e8-46e8-bd60-b8ea994b7b85","lcmsSnapshotId":"fd248c94-a58d-4b2f-845c-b3116acbb1f6","moduleDocumentId":"675d851c-efe3-42cd-9395-a0da2b292853","version":"2"},{"title":"Final Project","description":"Apply concepts that you learned in this course to a project.","objectives":"","conceptSequence":["53feb507-7185-4e14-b9f7-2df7895a5a3c","739d0c69-57ee-4a2f-82d2-46bca7bd1229"],"availableVersions":["1.1"],"duration":0,"lcmsDocumentId":"c91d19f0-1b95-4c5e-9f3e-8bdea391a476","lcmsSnapshotId":"fcbb6169-2693-4c36-aba7-41d93096c055","moduleDocumentId":"b6699cf7-a0b4-4cb5-9d81-a8f9d85f5c04","version":"1.1"},{"title":"Conclusion","description":"Learn next steps and give feedback on the course.","objectives":"","conceptSequence":["73ab85d7-dd75-4499-b338-0a61c4b99db5","7dc7b42b-e34b-4f33-9b70-a47f59e02f4b","35d26794-54ea-46de-862b-f63580122378"],"availableVersions":["1.4"],"duration":0,"lcmsDocumentId":"fc2151af-bb6a-4975-8f8d-15e5e698773d","lcmsSnapshotId":"2a3151ab-dea8-4dae-8674-1c9cafea5b2f","moduleDocumentId":"e6eaab41-ea47-4bf6-8d3a-60a7813afb5b","version":"1.4"}],"sectionIds":["https:\/\/matlabacademy.mathworks.com\/content-1.0\/f7062fd2-cf63-47c1-addf-0395ad030872","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81578733-6ecf-4dd3-8406-422ecfa8f11f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/1e9ae818-88fa-4555-a610-650c481dd9ef","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e59fc93d-5920-49c3-9590-1503d56928ce","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a15bb566-56b5-49c8-8c84-f86a0cea498e","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e117bdaa-311b-441c-ad20-80642764b5f0","https:\/\/matlabacademy.mathworks.com\/content-1.0\/9f5d23a8-6717-4ad7-8d40-c482ff4631cb","https:\/\/matlabacademy.mathworks.com\/content-1.0\/80414411-ac8d-46d1-86e6-0c1e344b2680","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91e5f023-6b5b-4ed5-b54a-437d3b7e2854","https:\/\/matlabacademy.mathworks.com\/content-1.0\/cd561866-1848-41d7-b357-1795ec638434","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d37d69e0-39ea-4f08-943c-f66aeb090be2","https:\/\/matlabacademy.mathworks.com\/content-1.0\/162cc1af-0c7d-4a3a-946b-e034058e4b0e","https:\/\/matlabacademy.mathworks.com\/content-1.0\/bef49d79-8c73-420c-aba4-6f3baf81e875","https:\/\/matlabacademy.mathworks.com\/content-1.0\/829b88d4-e7b5-481e-b7a9-8e46566cdb49","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81b033ce-65bc-4d0c-a277-43529367c5d7","https:\/\/matlabacademy.mathworks.com\/content-1.0\/c09adb4b-c816-4197-855c-0a4d89abac0c","https:\/\/matlabacademy.mathworks.com\/content-1.0\/65ccc3d4-8b60-4495-9a93-42a4a270c342","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc","https:\/\/matlabacademy.mathworks.com\/content-1.0\/318800f0-9f15-4c99-93e8-762447294ca8","https:\/\/matlabacademy.mathworks.com\/content-1.0\/85b1faba-450f-448d-9a76-5a3c61519af1","https:\/\/matlabacademy.mathworks.com\/content-1.0\/23fd8d3d-c122-4975-a278-43c5d42933c8","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0513f6bb-47a0-4089-ad77-1e4edb6995ba","https:\/\/matlabacademy.mathworks.com\/content-1.0\/140f3f8b-c51c-4cd3-950d-20601ba182ed","https:\/\/matlabacademy.mathworks.com\/content-1.0\/6e813d3e-8711-430f-8768-931f7adb996f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/502d3871-11ef-4dae-a901-92b56f1ae5f9","https:\/\/matlabacademy.mathworks.com\/content-1.0\/b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a57a0419-62eb-4061-91b8-8cc999114276","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0d037bcb-3dda-440a-ac29-a8dc3b7db00f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/8a591ed5-d9f1-49a0-9550-c3f030e8600b","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91c90395-7169-40b9-9ef7-3fb54b24f2d6","https:\/\/matlabacademy.mathworks.com\/content-1.0\/95651580-7af3-492b-a6e2-62cf9e775b86","https:\/\/matlabacademy.mathworks.com\/content-1.0\/522260cd-b7b2-4163-983c-8df04f7dfd72","https:\/\/matlabacademy.mathworks.com\/content-1.0\/ce14f5a3-bc38-4ef1-8834-cbb11c199599","https:\/\/matlabacademy.mathworks.com\/content-1.0\/7302d454-0675-46ab-8273-4f0aa46487df"],"moduleIds":["https:\/\/matlabacademy.mathworks.com\/content-1.0\/d3828364-0e4f-40eb-abb9-d8a7c379a852","https:\/\/matlabacademy.mathworks.com\/content-1.0\/10b84805-49f0-4ba4-af14-6758ef66db07","https:\/\/matlabacademy.mathworks.com\/content-1.0\/f821ef07-c7a4-4269-b37f-efe9884563d0","https:\/\/matlabacademy.mathworks.com\/content-1.0\/b5926e93-713f-4965-8236-3ba7cb2f928a","https:\/\/matlabacademy.mathworks.com\/content-1.0\/7d73bce2-912f-409e-9207-f26e23a59b0f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/8e80c346-3ac6-4e97-85dd-649ac464591f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d4f238ea-7ce1-4a56-a4de-99a03148435f","https:\/\/matlabacademy.mathworks.com\/content-1.0\/cb219294-b3f9-46c7-ad75-a082e3f98cb2","https:\/\/matlabacademy.mathworks.com\/content-1.0\/173f2db1-2e0e-4dfc-8ee0-ed3b75c1b252","https:\/\/matlabacademy.mathworks.com\/content-1.0\/7f37ee12-8575-4a0c-9fbe-26b1a339d4a2","https:\/\/matlabacademy.mathworks.com\/content-1.0\/c699f219-694a-4007-8040-2675728878c4","https:\/\/matlabacademy.mathworks.com\/content-1.0\/675d851c-efe3-42cd-9395-a0da2b292853","https:\/\/matlabacademy.mathworks.com\/content-1.0\/b6699cf7-a0b4-4cb5-9d81-a8f9d85f5c04","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e6eaab41-ea47-4bf6-8d3a-60a7813afb5b"],"sectionTypes":{"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f7062fd2-cf63-47c1-addf-0395ad030872":"iframe","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81578733-6ecf-4dd3-8406-422ecfa8f11f":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/1e9ae818-88fa-4555-a610-650c481dd9ef":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e59fc93d-5920-49c3-9590-1503d56928ce":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a15bb566-56b5-49c8-8c84-f86a0cea498e":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e117bdaa-311b-441c-ad20-80642764b5f0":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/9f5d23a8-6717-4ad7-8d40-c482ff4631cb":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/80414411-ac8d-46d1-86e6-0c1e344b2680":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91e5f023-6b5b-4ed5-b54a-437d3b7e2854":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/cd561866-1848-41d7-b357-1795ec638434":"survey","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d37d69e0-39ea-4f08-943c-f66aeb090be2":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/162cc1af-0c7d-4a3a-946b-e034058e4b0e":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/bef49d79-8c73-420c-aba4-6f3baf81e875":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/829b88d4-e7b5-481e-b7a9-8e46566cdb49":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81b033ce-65bc-4d0c-a277-43529367c5d7":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/c09adb4b-c816-4197-855c-0a4d89abac0c":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/65ccc3d4-8b60-4495-9a93-42a4a270c342":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/318800f0-9f15-4c99-93e8-762447294ca8":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/85b1faba-450f-448d-9a76-5a3c61519af1":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/23fd8d3d-c122-4975-a278-43c5d42933c8":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0513f6bb-47a0-4089-ad77-1e4edb6995ba":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/140f3f8b-c51c-4cd3-950d-20601ba182ed":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/6e813d3e-8711-430f-8768-931f7adb996f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/502d3871-11ef-4dae-a901-92b56f1ae5f9":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a57a0419-62eb-4061-91b8-8cc999114276":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0d037bcb-3dda-440a-ac29-a8dc3b7db00f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/8a591ed5-d9f1-49a0-9550-c3f030e8600b":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91c90395-7169-40b9-9ef7-3fb54b24f2d6":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/95651580-7af3-492b-a6e2-62cf9e775b86":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/522260cd-b7b2-4163-983c-8df04f7dfd72":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/ce14f5a3-bc38-4ef1-8834-cbb11c199599":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/7302d454-0675-46ab-8273-4f0aa46487df":"iframe"},"sectionModules":{"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f7062fd2-cf63-47c1-addf-0395ad030872":{"title":"Conclusion","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/e6eaab41-ea47-4bf6-8d3a-60a7813afb5b"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/81578733-6ecf-4dd3-8406-422ecfa8f11f":{"title":"Course Overview","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/d3828364-0e4f-40eb-abb9-d8a7c379a852"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/1e9ae818-88fa-4555-a610-650c481dd9ef":{"title":"MATLAB Desktop and Editor","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f821ef07-c7a4-4269-b37f-efe9884563d0"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/e59fc93d-5920-49c3-9590-1503d56928ce":{"title":"Logical Arrays","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/c699f219-694a-4007-8040-2675728878c4"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/a15bb566-56b5-49c8-8c84-f86a0cea498e":{"title":"Array Indexing and Modification","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7d73bce2-912f-409e-9207-f26e23a59b0f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/e117bdaa-311b-441c-ad20-80642764b5f0":{"title":"Documentation","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/cb219294-b3f9-46c7-ad75-a082e3f98cb2"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/9f5d23a8-6717-4ad7-8d40-c482ff4631cb":{"title":"Data Import","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7f37ee12-8575-4a0c-9fbe-26b1a339d4a2"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/80414411-ac8d-46d1-86e6-0c1e344b2680":{"title":"Programming","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/675d851c-efe3-42cd-9395-a0da2b292853"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/91e5f023-6b5b-4ed5-b54a-437d3b7e2854":{"title":"Final Project","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b6699cf7-a0b4-4cb5-9d81-a8f9d85f5c04"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/cd561866-1848-41d7-b357-1795ec638434":{"title":"Conclusion","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/e6eaab41-ea47-4bf6-8d3a-60a7813afb5b"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/d37d69e0-39ea-4f08-943c-f66aeb090be2":{"title":"Plots","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/173f2db1-2e0e-4dfc-8ee0-ed3b75c1b252"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/162cc1af-0c7d-4a3a-946b-e034058e4b0e":{"title":"Programming","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/675d851c-efe3-42cd-9395-a0da2b292853"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/bef49d79-8c73-420c-aba4-6f3baf81e875":{"title":"Documentation","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/cb219294-b3f9-46c7-ad75-a082e3f98cb2"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/829b88d4-e7b5-481e-b7a9-8e46566cdb49":{"title":"Function Calls","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/d4f238ea-7ce1-4a56-a4de-99a03148435f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/81b033ce-65bc-4d0c-a277-43529367c5d7":{"title":"Commands","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/10b84805-49f0-4ba4-af14-6758ef66db07"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/c09adb4b-c816-4197-855c-0a4d89abac0c":{"title":"Array Calculations","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/8e80c346-3ac6-4e97-85dd-649ac464591f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/65ccc3d4-8b60-4495-9a93-42a4a270c342":{"title":"Programming","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/675d851c-efe3-42cd-9395-a0da2b292853"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f":{"title":"Vectors and Matrices","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b5926e93-713f-4965-8236-3ba7cb2f928a"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc":{"title":"Plots","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/173f2db1-2e0e-4dfc-8ee0-ed3b75c1b252"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/318800f0-9f15-4c99-93e8-762447294ca8":{"title":"Array Indexing and Modification","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7d73bce2-912f-409e-9207-f26e23a59b0f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/85b1faba-450f-448d-9a76-5a3c61519af1":{"title":"Commands","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/10b84805-49f0-4ba4-af14-6758ef66db07"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/23fd8d3d-c122-4975-a278-43c5d42933c8":{"title":"MATLAB Desktop and Editor","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f821ef07-c7a4-4269-b37f-efe9884563d0"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/0513f6bb-47a0-4089-ad77-1e4edb6995ba":{"title":"Vectors and Matrices","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b5926e93-713f-4965-8236-3ba7cb2f928a"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/140f3f8b-c51c-4cd3-950d-20601ba182ed":{"title":"Commands","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/10b84805-49f0-4ba4-af14-6758ef66db07"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/6e813d3e-8711-430f-8768-931f7adb996f":{"title":"Logical Arrays","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/c699f219-694a-4007-8040-2675728878c4"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/502d3871-11ef-4dae-a901-92b56f1ae5f9":{"title":"Commands","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/10b84805-49f0-4ba4-af14-6758ef66db07"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c":{"title":"MATLAB Desktop and Editor","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f821ef07-c7a4-4269-b37f-efe9884563d0"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/a57a0419-62eb-4061-91b8-8cc999114276":{"title":"Programming","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/675d851c-efe3-42cd-9395-a0da2b292853"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/0d037bcb-3dda-440a-ac29-a8dc3b7db00f":{"title":"MATLAB Desktop and Editor","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f821ef07-c7a4-4269-b37f-efe9884563d0"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/8a591ed5-d9f1-49a0-9550-c3f030e8600b":{"title":"Array Indexing and Modification","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7d73bce2-912f-409e-9207-f26e23a59b0f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/91c90395-7169-40b9-9ef7-3fb54b24f2d6":{"title":"Vectors and Matrices","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b5926e93-713f-4965-8236-3ba7cb2f928a"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/95651580-7af3-492b-a6e2-62cf9e775b86":{"title":"Final Project","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/b6699cf7-a0b4-4cb5-9d81-a8f9d85f5c04"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/522260cd-b7b2-4163-983c-8df04f7dfd72":{"title":"Array Indexing and Modification","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7d73bce2-912f-409e-9207-f26e23a59b0f"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/ce14f5a3-bc38-4ef1-8834-cbb11c199599":{"title":"Data Import","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7f37ee12-8575-4a0c-9fbe-26b1a339d4a2"},"https:\/\/matlabacademy.mathworks.com\/content-1.0\/7302d454-0675-46ab-8273-4f0aa46487df":{"title":"Conclusion","chapterId":"https:\/\/matlabacademy.mathworks.com\/content-1.0\/e6eaab41-ea47-4bf6-8d3a-60a7813afb5b"}},"isSemanticVersion":true,"source":"oc","lcmsDocumentId":"2c275c2b-b034-4811-872f-e13f9be6dcc9","catalogSectionTypes":{"https:\/\/matlabacademy.mathworks.com\/content-1.0\/f7062fd2-cf63-47c1-addf-0395ad030872":"iframe","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81578733-6ecf-4dd3-8406-422ecfa8f11f":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e59fc93d-5920-49c3-9590-1503d56928ce":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/1e9ae818-88fa-4555-a610-650c481dd9ef":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/e117bdaa-311b-441c-ad20-80642764b5f0":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a15bb566-56b5-49c8-8c84-f86a0cea498e":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/01beb3fa-990d-437a-90f6-ce2c23a8c0e0":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/80414411-ac8d-46d1-86e6-0c1e344b2680":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/9f5d23a8-6717-4ad7-8d40-c482ff4631cb":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91e5f023-6b5b-4ed5-b54a-437d3b7e2854":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/87efa732-8c7a-405f-ad4d-52105699ef86":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/cd561866-1848-41d7-b357-1795ec638434":"survey","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d37d69e0-39ea-4f08-943c-f66aeb090be2":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/162cc1af-0c7d-4a3a-946b-e034058e4b0e":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/4e51bc98-3837-4d93-b229-c7c9caf0e4fd":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/bef49d79-8c73-420c-aba4-6f3baf81e875":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/829b88d4-e7b5-481e-b7a9-8e46566cdb49":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0eb93cb5-0450-46a1-9fc3-02617beacc6a":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/81b033ce-65bc-4d0c-a277-43529367c5d7":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/c09adb4b-c816-4197-855c-0a4d89abac0c":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/65ccc3d4-8b60-4495-9a93-42a4a270c342":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/318800f0-9f15-4c99-93e8-762447294ca8":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/85b1faba-450f-448d-9a76-5a3c61519af1":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/23fd8d3d-c122-4975-a278-43c5d42933c8":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0513f6bb-47a0-4089-ad77-1e4edb6995ba":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/6e813d3e-8711-430f-8768-931f7adb996f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/140f3f8b-c51c-4cd3-950d-20601ba182ed":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/502d3871-11ef-4dae-a901-92b56f1ae5f9":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c":"video","https:\/\/matlabacademy.mathworks.com\/content-1.0\/a57a0419-62eb-4061-91b8-8cc999114276":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/0d037bcb-3dda-440a-ac29-a8dc3b7db00f":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/8a591ed5-d9f1-49a0-9550-c3f030e8600b":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/91c90395-7169-40b9-9ef7-3fb54b24f2d6":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/95651580-7af3-492b-a6e2-62cf9e775b86":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/522260cd-b7b2-4163-983c-8df04f7dfd72":"matlabInteraction","https:\/\/matlabacademy.mathworks.com\/content-1.0\/7302d454-0675-46ab-8273-4f0aa46487df":"iframe","https:\/\/matlabacademy.mathworks.com\/content-1.0\/ce14f5a3-bc38-4ef1-8834-cbb11c199599":"video"},"type":"free"}],"catalog":{"053c88d1-7e91-4bd3-814c-728b48428ba6":{"description":"Create plots of vector data.","lcmsDocumentId":"053c88d1-7e91-4bd3-814c-728b48428ba6","lcmsSnapshotId":"f956e475-4f1d-4826-9078-aef06d4ca720","prerequisites":[],"sections":[{"lcmsDocumentId":"d37d69e0-39ea-4f08-943c-f66aeb090be2","lcmsSnapshotId":"0aa8e15c-f77a-47d2-9898-bfeefd30491a","src":"053c88d1-7e91-4bd3-814c-728b48428ba6\/d37d69e0-39ea-4f08-943c-f66aeb090be2.json","title":"Practice","type":"matlabInteraction"}],"title":"Plot Vectors","type":"contentUnit"},"127df890-a15c-4df5-9192-f0605171e9cf":{"description":"Learn syntax for extracting subsets of MATLAB variables.","lcmsDocumentId":"127df890-a15c-4df5-9192-f0605171e9cf","lcmsSnapshotId":"2703466c-d07c-493c-a4fd-e6c8d6a698c0","prerequisites":[],"sections":[{"lcmsDocumentId":"522260cd-b7b2-4163-983c-8df04f7dfd72","lcmsSnapshotId":"f32721d3-3749-4e63-947a-05b21cbf1df0","src":"127df890-a15c-4df5-9192-f0605171e9cf\/522260cd-b7b2-4163-983c-8df04f7dfd72.json","title":"Practice","type":"matlabInteraction"}],"title":"Index into Arrays","type":"contentUnit"},"15a42f79-3d60-4765-a79c-5fb962032ec6":{"description":"Create common matrices, such as the identity matrix.","lcmsDocumentId":"15a42f79-3d60-4765-a79c-5fb962032ec6","lcmsSnapshotId":"3ec106da-78f4-41e3-8f3c-b0d88f2487f8","prerequisites":[],"sections":[{"lcmsDocumentId":"91c90395-7169-40b9-9ef7-3fb54b24f2d6","lcmsSnapshotId":"690feb24-6fc0-46bb-9828-a7a2ea85e988","src":"15a42f79-3d60-4765-a79c-5fb962032ec6\/91c90395-7169-40b9-9ef7-3fb54b24f2d6.json","title":"Practice","type":"matlabInteraction"}],"title":"Create Arrays with Functions","type":"contentUnit"},"179c189e-78d7-4bda-a0e6-2daf60a5964a":{"description":"New lesson description","lcmsDocumentId":"179c189e-78d7-4bda-a0e6-2daf60a5964a","lcmsSnapshotId":"8e067051-1bfd-4161-95a0-935c883f4ee9","prerequisites":[],"sections":[{"jsonSrc":"179c189e-78d7-4bda-a0e6-2daf60a5964a\/e117bdaa-311b-441c-ad20-80642764b5f0.json","lcmsDocumentId":"e117bdaa-311b-441c-ad20-80642764b5f0","lcmsSnapshotId":"02c6581e-8e80-4c25-ad78-b5e89b57b8e8","src":"6370706628112","title":"Video","type":"video"}],"title":"MATLAB Documentation","type":"contentUnit"},"24d6766a-b5c7-42a4-a2bf-ffe7f705e176":{"description":"Discuss syntax of creating and removing MATLAB variables.","lcmsDocumentId":"24d6766a-b5c7-42a4-a2bf-ffe7f705e176","lcmsSnapshotId":"2fdc7866-ec61-4761-8bd4-8e664209c27f","prerequisites":[],"sections":[{"lcmsDocumentId":"6e813d3e-8711-430f-8768-931f7adb996f","lcmsSnapshotId":"27b3d754-a283-419f-854f-dd053004095a","src":"24d6766a-b5c7-42a4-a2bf-ffe7f705e176\/6e813d3e-8711-430f-8768-931f7adb996f.json","title":"Practice","type":"matlabInteraction"}],"title":"Logical Indexing","type":"contentUnit"},"290bb6c8-6cbc-4427-83b7-4c79387ad50e":{"description":"Identify and fix an error in MATLAB code.","lcmsDocumentId":"290bb6c8-6cbc-4427-83b7-4c79387ad50e","lcmsSnapshotId":"906057fc-4c3a-4cf2-9eba-96d6de3be4f5","prerequisites":[],"sections":[{"lcmsDocumentId":"23fd8d3d-c122-4975-a278-43c5d42933c8","lcmsSnapshotId":"d8973652-a307-4b70-8b4d-c5a4b8c6be47","src":"290bb6c8-6cbc-4427-83b7-4c79387ad50e\/23fd8d3d-c122-4975-a278-43c5d42933c8.json","title":"Practice","type":"matlabInteraction"}],"title":"Debug MATLAB Code","type":"contentUnit"},"35d26794-54ea-46de-862b-f63580122378":{"description":"Provide feedback on the course.","lcmsDocumentId":"35d26794-54ea-46de-862b-f63580122378","lcmsSnapshotId":"9e5ddc84-d79f-436f-8b12-29267f973f67","prerequisites":[],"sections":[{"lcmsDocumentId":"cd561866-1848-41d7-b357-1795ec638434","lcmsSnapshotId":"4b656cc2-1fda-41a0-8cf3-079b602a20a7","src":"N\/A","title":"Course survey","type":"survey"}],"title":"Survey","type":"contentUnit"},"37f78dbf-c1c5-40ad-a42b-99246f94d718":{"description":"Become familiar with the course software and content organization.","lcmsDocumentId":"37f78dbf-c1c5-40ad-a42b-99246f94d718","lcmsSnapshotId":"0e6e33d9-97c4-4df6-8858-dfc71a9a3915","prerequisites":[],"sections":[{"jsonSrc":"37f78dbf-c1c5-40ad-a42b-99246f94d718\/b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c.json","lcmsDocumentId":"b8ed17a3-da88-4ad0-8ce7-c77b0fbc337c","lcmsSnapshotId":"a82e1f3f-1326-412b-966e-51327d427960","src":"6370704369112","title":"MATLAB Desktop and Editor","type":"video"}],"title":"MATLAB Desktop and Editor","type":"contentUnit"},"3b566f53-a7ff-4120-9de7-07ad4fa73b07":{"description":"Learn syntax for extracting multiple elements from an array.","lcmsDocumentId":"3b566f53-a7ff-4120-9de7-07ad4fa73b07","lcmsSnapshotId":"7990d872-fc74-4514-a710-79ca37d23f12","prerequisites":[],"sections":[{"lcmsDocumentId":"a15bb566-56b5-49c8-8c84-f86a0cea498e","lcmsSnapshotId":"f3b1e119-d9cb-4cc8-8914-d29a7fdfbec6","src":"3b566f53-a7ff-4120-9de7-07ad4fa73b07\/a15bb566-56b5-49c8-8c84-f86a0cea498e.json","title":"Practice","type":"matlabInteraction"}],"title":"Extract Multiple Elements","type":"contentUnit"},"3e666508-87cf-49ce-98df-ca3b679d6237":{"description":"Discuss syntax of creating and removing MATLAB variables.","lcmsDocumentId":"3e666508-87cf-49ce-98df-ca3b679d6237","lcmsSnapshotId":"1d25d05a-1d7b-4c18-9679-d34262534a98","prerequisites":[],"sections":[{"lcmsDocumentId":"140f3f8b-c51c-4cd3-950d-20601ba182ed","lcmsSnapshotId":"adf8312d-bbaa-4f44-9f8c-c219929259dc","src":"3e666508-87cf-49ce-98df-ca3b679d6237\/140f3f8b-c51c-4cd3-950d-20601ba182ed.json","title":"Practice","type":"matlabInteraction"}],"title":"Save and Load Variables","type":"contentUnit"},"4a413802-30a4-41a0-9136-a02db8905709":{"description":"Add labels and annotations to a plot.","lcmsDocumentId":"4a413802-30a4-41a0-9136-a02db8905709","lcmsSnapshotId":"f674c432-13dc-4088-84f0-3c35a68c8273","prerequisites":[],"sections":[{"lcmsDocumentId":"4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc","lcmsSnapshotId":"c26ea4a2-f6aa-42d6-b84f-7a5ccc56be02","src":"4a413802-30a4-41a0-9136-a02db8905709\/4ec37111-0ed6-445e-bf4e-6c8c4d5e4bcc.json","title":"Practice","type":"matlabInteraction"}],"title":"Annotate Plots","type":"contentUnit"},"5336924d-3010-46d1-8729-ec63c32ae1cc":{"description":"Use programming constructs for making decisions in MATLAB code.","lcmsDocumentId":"5336924d-3010-46d1-8729-ec63c32ae1cc","lcmsSnapshotId":"5fb2cdd9-7d54-46b7-b6f2-5acf7d6d35a1","prerequisites":[],"sections":[{"lcmsDocumentId":"a57a0419-62eb-4061-91b8-8cc999114276","lcmsSnapshotId":"59c283af-1aa8-43d1-ae0c-ebd9d2e1f509","src":"5336924d-3010-46d1-8729-ec63c32ae1cc\/a57a0419-62eb-4061-91b8-8cc999114276.json","title":"Practice","type":"matlabInteraction"}],"title":"Decision Branching","type":"contentUnit"},"5393ccdc-2920-4bd7-831e-65be69487da2":{"description":"","lcmsDocumentId":"5393ccdc-2920-4bd7-831e-65be69487da2","lcmsSnapshotId":"f638bae4-9988-4305-bc4d-a6fe4422609a","prerequisites":[],"sections":[{"lcmsDocumentId":"e59fc93d-5920-49c3-9590-1503d56928ce","lcmsSnapshotId":"e1387020-5c7a-4856-a8b2-8932a983fc04","src":"5393ccdc-2920-4bd7-831e-65be69487da2\/e59fc93d-5920-49c3-9590-1503d56928ce.json","title":"Practice","type":"matlabInteraction"}],"title":"Relational Operators","type":"contentUnit"},"53feb507-7185-4e14-b9f7-2df7895a5a3c":{"description":"Calculate frequency shift of a star's light to determine if it is moving towards or away from us.","lcmsDocumentId":"53feb507-7185-4e14-b9f7-2df7895a5a3c","lcmsSnapshotId":"64a049d5-5c65-41eb-bc37-da0141dc3f8e","prerequisites":[],"sections":[{"lcmsDocumentId":"91e5f023-6b5b-4ed5-b54a-437d3b7e2854","lcmsSnapshotId":"b5a78c3c-00ed-4dc4-a39f-1d830d604364","src":"53feb507-7185-4e14-b9f7-2df7895a5a3c\/91e5f023-6b5b-4ed5-b54a-437d3b7e2854.json","title":"Practice","type":"matlabInteraction"}],"title":"Project - Stellar Motion","type":"contentUnit"},"5adba527-e472-49fd-b1f4-4049c49bea40":{"description":"Introduce the purpose and flow of MATLAB Onramp.","lcmsDocumentId":"5adba527-e472-49fd-b1f4-4049c49bea40","lcmsSnapshotId":"4477a453-5a73-4353-a98b-e484735161af","prerequisites":[],"sections":[{"jsonSrc":"5adba527-e472-49fd-b1f4-4049c49bea40\/81578733-6ecf-4dd3-8406-422ecfa8f11f.json","lcmsDocumentId":"81578733-6ecf-4dd3-8406-422ecfa8f11f","lcmsSnapshotId":"6bf3b2ba-e415-41ba-a20b-1266fe93ac74","src":"6370706437112","title":"Course Overview","type":"video"}],"title":"Course Overview","type":"contentUnit"},"5b8bf9db-a19d-4c29-89bb-7ed1add4b2c9":{"description":"Apply operations to vectors element-by-element.","lcmsDocumentId":"5b8bf9db-a19d-4c29-89bb-7ed1add4b2c9","lcmsSnapshotId":"8acffaf9-ade7-4c4e-bb1a-d877eb44044b","prerequisites":[],"sections":[{"lcmsDocumentId":"c09adb4b-c816-4197-855c-0a4d89abac0c","lcmsSnapshotId":"93089fbb-4f7d-41ef-a656-63769bfc5b41","src":"5b8bf9db-a19d-4c29-89bb-7ed1add4b2c9\/c09adb4b-c816-4197-855c-0a4d89abac0c.json","title":"Practice","type":"matlabInteraction"}],"title":"Perform Array Operations on Vectors","type":"contentUnit"},"5f29c644-1b3c-4b81-9b34-e7037d73f44c":{"description":"Create vectors with evenly-spaced elements.","lcmsDocumentId":"5f29c644-1b3c-4b81-9b34-e7037d73f44c","lcmsSnapshotId":"eda02633-18e1-4bb9-9810-7a93849e60c1","prerequisites":[],"sections":[{"lcmsDocumentId":"d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f","lcmsSnapshotId":"64717b3b-fb11-44d4-b1a1-3cb4f4e239a0","src":"5f29c644-1b3c-4b81-9b34-e7037d73f44c\/d5f83a7d-bd90-4e61-af8a-cfd4fa308e9f.json","title":"Practice","type":"matlabInteraction"}],"title":"Create Evenly Spaced Vectors","type":"contentUnit"},"6a2d9cba-6880-4183-a86c-aacfa09f2596":{"description":"Use for loops to execute code statements a specified number of times.","lcmsDocumentId":"6a2d9cba-6880-4183-a86c-aacfa09f2596","lcmsSnapshotId":"dfa54bc6-1954-4ab9-a4f9-117bf6082561","prerequisites":[],"sections":[{"lcmsDocumentId":"80414411-ac8d-46d1-86e6-0c1e344b2680","lcmsSnapshotId":"f325d3fb-d9d3-4036-a631-4358d42a6d54","src":"6a2d9cba-6880-4183-a86c-aacfa09f2596\/80414411-ac8d-46d1-86e6-0c1e344b2680.json","title":"Practice","type":"matlabInteraction"}],"title":"Write a For Loop","type":"contentUnit"},"6f42452e-ee9d-4acc-b0d3-0277305edc81":{"description":"Learn syntax for creating MATLAB arrays.","lcmsDocumentId":"6f42452e-ee9d-4acc-b0d3-0277305edc81","lcmsSnapshotId":"8a91db74-9069-4808-a91c-3ad0e11bef8a","prerequisites":[],"sections":[{"lcmsDocumentId":"0513f6bb-47a0-4089-ad77-1e4edb6995ba","lcmsSnapshotId":"d1a71270-f68c-4edd-8d7d-7d0911f55fa9","src":"6f42452e-ee9d-4acc-b0d3-0277305edc81\/0513f6bb-47a0-4089-ad77-1e4edb6995ba.json","title":"Practice","type":"matlabInteraction"}],"title":"Manually Enter Arrays","type":"contentUnit"},"739d0c69-57ee-4a2f-82d2-46bca7bd1229":{"description":"Calculate the speed relative to the Earth of multiple stars and identify which stars are moving away from us.","lcmsDocumentId":"739d0c69-57ee-4a2f-82d2-46bca7bd1229","lcmsSnapshotId":"c73af002-9029-4cbd-8cca-1955ede5c02c","prerequisites":[],"sections":[{"lcmsDocumentId":"95651580-7af3-492b-a6e2-62cf9e775b86","lcmsSnapshotId":"98eb9ce0-bee5-4a9a-b0f9-faabcc0a3d38","src":"739d0c69-57ee-4a2f-82d2-46bca7bd1229\/95651580-7af3-492b-a6e2-62cf9e775b86.json","title":"Practice","type":"matlabInteraction"}],"title":"Project - Compare Stellar Spectra","type":"contentUnit"},"73ab85d7-dd75-4499-b338-0a61c4b99db5":{"description":"","lcmsDocumentId":"73ab85d7-dd75-4499-b338-0a61c4b99db5","lcmsSnapshotId":"9aa308e2-627f-4e87-8ed1-7743c6e5885f","prerequisites":[],"sections":[{"lcmsDocumentId":"f7062fd2-cf63-47c1-addf-0395ad030872","lcmsSnapshotId":"5a864d65-95c0-4489-a113-4dffb07d0e8e","src":"73ab85d7-dd75-4499-b338-0a61c4b99db5\/f7062fd2-cf63-47c1-addf-0395ad030872.html","title":"Summary","type":"iframe"}],"title":"Summary","type":"contentUnit"},"7dc7b42b-e34b-4f33-9b70-a47f59e02f4b":{"description":"Obtain an overview of other resources that will help you use MathWorks software.","lcmsDocumentId":"7dc7b42b-e34b-4f33-9b70-a47f59e02f4b","lcmsSnapshotId":"9351f1cd-5b39-4914-bc06-d0a9e3a31f87","prerequisites":[],"sections":[{"lcmsDocumentId":"7302d454-0675-46ab-8273-4f0aa46487df","lcmsSnapshotId":"879d9774-2c88-4c03-8d8f-2b32c4f82374","src":"7dc7b42b-e34b-4f33-9b70-a47f59e02f4b\/7302d454-0675-46ab-8273-4f0aa46487df.html","title":"MATLAB Resources","type":"iframe"}],"title":"Next Steps","type":"contentUnit"},"82c2e581-f99e-4ad2-baa3-6ae4d8996a5d":{"description":"Use for loops to execute code statements a specified number of times.","lcmsDocumentId":"82c2e581-f99e-4ad2-baa3-6ae4d8996a5d","lcmsSnapshotId":"20574aa9-043e-4e3d-9710-0ecc4fbe514f","prerequisites":[],"sections":[{"lcmsDocumentId":"01beb3fa-990d-437a-90f6-ce2c23a8c0e0","lcmsSnapshotId":"444f14d3-d9fc-4e86-8c3c-7cb762b1918f","src":"82c2e581-f99e-4ad2-baa3-6ae4d8996a5d\/01beb3fa-990d-437a-90f6-ce2c23a8c0e0.json","title":"Practice","type":"matlabInteraction"}],"title":"For Loops","type":"contentUnit"},"83ec25a8-181c-4360-900b-192e3be86dff":{"description":"Use the MATLAB Editor to enter and execute commands.","lcmsDocumentId":"83ec25a8-181c-4360-900b-192e3be86dff","lcmsSnapshotId":"cea25cc6-c0d3-4fac-a855-3b6b3a7d2613","prerequisites":[],"sections":[{"lcmsDocumentId":"1e9ae818-88fa-4555-a610-650c481dd9ef","lcmsSnapshotId":"f2598840-d3f6-484d-bcb5-03398500ad0a","src":"83ec25a8-181c-4360-900b-192e3be86dff\/1e9ae818-88fa-4555-a610-650c481dd9ef.json","title":"Practice","type":"matlabInteraction"}],"title":"The MATLAB Editor","type":"contentUnit"},"8d136b9e-55a2-4a45-9f46-4532191def80":{"description":"Use programming constructs to control the execution of MATLAB code.","lcmsDocumentId":"8d136b9e-55a2-4a45-9f46-4532191def80","lcmsSnapshotId":"7aee7290-3aa1-4a6a-beda-ca8ce1babe43","prerequisites":[],"sections":[{"jsonSrc":"8d136b9e-55a2-4a45-9f46-4532191def80\/0eb93cb5-0450-46a1-9fc3-02617beacc6a.json","lcmsDocumentId":"0eb93cb5-0450-46a1-9fc3-02617beacc6a","lcmsSnapshotId":"6aa89504-8e8b-4e24-a084-11b1ab9b6a2f","src":"6084982825001","title":"Video","type":"video"}],"title":"Programming Constructs","type":"contentUnit"},"8edc5441-7715-4bf9-91ca-3ebdd4166ee8":{"description":"Run and modify scripts.","lcmsDocumentId":"8edc5441-7715-4bf9-91ca-3ebdd4166ee8","lcmsSnapshotId":"1d119201-a6ac-4b9f-97d9-1f76a958219c","prerequisites":[],"sections":[{"lcmsDocumentId":"0d037bcb-3dda-440a-ac29-a8dc3b7db00f","lcmsSnapshotId":"a51b4c29-5c3e-4f9b-9baa-a4129b2ebec0","src":"8edc5441-7715-4bf9-91ca-3ebdd4166ee8\/0d037bcb-3dda-440a-ac29-a8dc3b7db00f.json","title":"Practice","type":"matlabInteraction"}],"title":"Run Scripts","type":"contentUnit"},"8fa387f0-1c32-4e8d-b21e-56c0b6b4761a":{"description":"","lcmsDocumentId":"8fa387f0-1c32-4e8d-b21e-56c0b6b4761a","lcmsSnapshotId":"74d60778-bd28-4fc6-843b-d4153d5852c5","prerequisites":[],"sections":[{"jsonSrc":"8fa387f0-1c32-4e8d-b21e-56c0b6b4761a\/162cc1af-0c7d-4a3a-946b-e034058e4b0e.json","lcmsDocumentId":"162cc1af-0c7d-4a3a-946b-e034058e4b0e","lcmsSnapshotId":"fc8b1b72-368d-4380-be78-23142413ce1f","src":"6380156428112","title":"Repeat Code with Loops","type":"video"}],"title":"Repeat Code with Loops","type":"contentUnit"},"937e3f0c-3549-4847-a3ff-22fbfbe4bfd0":{"description":"Modify the values of elements within an array.","lcmsDocumentId":"937e3f0c-3549-4847-a3ff-22fbfbe4bfd0","lcmsSnapshotId":"3396e95c-88ec-4a18-9cff-77de58da3c6c","prerequisites":[],"sections":[{"lcmsDocumentId":"8a591ed5-d9f1-49a0-9550-c3f030e8600b","lcmsSnapshotId":"e1d12ccd-d8f1-43ec-8c16-518c7761bac6","src":"937e3f0c-3549-4847-a3ff-22fbfbe4bfd0\/8a591ed5-d9f1-49a0-9550-c3f030e8600b.json","title":"Practice","type":"matlabInteraction"}],"title":"Change Values in Arrays","type":"contentUnit"},"941b6351-d8c4-4a00-9415-df0fd4c33ad8":{"description":"Use programming constructs for making decisions in MATLAB code.","lcmsDocumentId":"941b6351-d8c4-4a00-9415-df0fd4c33ad8","lcmsSnapshotId":"0bc36268-1e57-4c9b-9b1e-3eaaf19aebaf","prerequisites":[],"sections":[{"lcmsDocumentId":"87efa732-8c7a-405f-ad4d-52105699ef86","lcmsSnapshotId":"85f24035-709a-428c-bc58-ec30f3254232","src":"941b6351-d8c4-4a00-9415-df0fd4c33ad8\/87efa732-8c7a-405f-ad4d-52105699ef86.json","title":"Practice","type":"matlabInteraction"}],"title":"Decision Branching","type":"contentUnit"},"94f55d87-2545-4ae0-945c-2a7dadfa71be":{"description":"Learn how to use the MATLAB documentation.","lcmsDocumentId":"94f55d87-2545-4ae0-945c-2a7dadfa71be","lcmsSnapshotId":"0dc7dc8e-e6b5-495e-91fa-6937ae78048e","prerequisites":[],"sections":[{"lcmsDocumentId":"bef49d79-8c73-420c-aba4-6f3baf81e875","lcmsSnapshotId":"5212e73c-df9d-4d40-a9db-354e74de9b97","src":"94f55d87-2545-4ae0-945c-2a7dadfa71be\/bef49d79-8c73-420c-aba4-6f3baf81e875.json","title":"Practice","type":"matlabInteraction"}],"title":"Use MATLAB Documentation","type":"contentUnit"},"a1c872af-20d5-4ee6-a6cc-e4e1f80e0dd5":{"description":"Use the Command Window to enter MATLAB commands.","lcmsDocumentId":"a1c872af-20d5-4ee6-a6cc-e4e1f80e0dd5","lcmsSnapshotId":"9cbed07a-68d8-4df3-b416-f3732b0e01b3","prerequisites":[],"sections":[{"lcmsDocumentId":"85b1faba-450f-448d-9a76-5a3c61519af1","lcmsSnapshotId":"9ddb4f4a-1e9b-40ea-87b4-c4390e7b96b2","src":"a1c872af-20d5-4ee6-a6cc-e4e1f80e0dd5\/85b1faba-450f-448d-9a76-5a3c61519af1.json","title":"Practice","type":"matlabInteraction"}],"title":"Enter Commands","type":"contentUnit"},"a3b8699b-acf6-49ce-8155-fe9deb176013":{"description":"Learn how to call common MATLAB functions.","lcmsDocumentId":"a3b8699b-acf6-49ce-8155-fe9deb176013","lcmsSnapshotId":"8749d18d-269b-499d-8149-8cdb6ffa5933","prerequisites":[],"sections":[{"lcmsDocumentId":"502d3871-11ef-4dae-a901-92b56f1ae5f9","lcmsSnapshotId":"a8dea6fc-7946-4381-ab8e-b287a5823c75","src":"a3b8699b-acf6-49ce-8155-fe9deb176013\/502d3871-11ef-4dae-a901-92b56f1ae5f9.json","title":"Practice","type":"matlabInteraction"}],"title":"Use Built-in Functions and Constants","type":"contentUnit"},"ba18ca7c-0b32-4067-bea7-b388297d7b76":{"description":"Use programming constructs to control the execution of MATLAB code.","lcmsDocumentId":"ba18ca7c-0b32-4067-bea7-b388297d7b76","lcmsSnapshotId":"d031db84-497a-481d-abd0-20c772f46d08","prerequisites":[],"sections":[{"jsonSrc":"ba18ca7c-0b32-4067-bea7-b388297d7b76\/65ccc3d4-8b60-4495-9a93-42a4a270c342.json","lcmsDocumentId":"65ccc3d4-8b60-4495-9a93-42a4a270c342","lcmsSnapshotId":"1c14c111-f0a4-4747-b6a0-3f2dfde43557","src":"6380158487112","title":"Video","type":"video"}],"title":"Conditional Statements","type":"contentUnit"},"bc55871e-8c7d-487e-ace9-15b8f13c6c5c":{"description":"Discuss syntax of creating and removing MATLAB variables.","lcmsDocumentId":"bc55871e-8c7d-487e-ace9-15b8f13c6c5c","lcmsSnapshotId":"2b1e3d88-c4ea-483d-8527-fd66a4bee02b","prerequisites":[],"sections":[{"lcmsDocumentId":"4e51bc98-3837-4d93-b229-c7c9caf0e4fd","lcmsSnapshotId":"9a5ebb37-7224-4c91-b6c0-0754a85b0a06","src":"bc55871e-8c7d-487e-ace9-15b8f13c6c5c\/4e51bc98-3837-4d93-b229-c7c9caf0e4fd.json","title":"Practice","type":"matlabInteraction"}],"title":"Logical Indexing","type":"contentUnit"},"c02030b0-16a4-4eea-bf7e-ada105851aa5":{"description":"Work with data imported as a table.","lcmsDocumentId":"c02030b0-16a4-4eea-bf7e-ada105851aa5","lcmsSnapshotId":"7dc457ac-b2e5-44c9-ad87-2e1b65fa3275","prerequisites":[],"sections":[{"lcmsDocumentId":"9f5d23a8-6717-4ad7-8d40-c482ff4631cb","lcmsSnapshotId":"d6fa98fe-a759-4820-97da-748ea6c1ce71","src":"c02030b0-16a4-4eea-bf7e-ada105851aa5\/9f5d23a8-6717-4ad7-8d40-c482ff4631cb.json","title":"Practice","type":"matlabInteraction"}],"title":"Import Data as a Table","type":"contentUnit"},"cbd8475b-3fb7-41b5-a4e4-20dbb5c41020":{"description":"Learn the rules for valid MATLAB variable names.","lcmsDocumentId":"cbd8475b-3fb7-41b5-a4e4-20dbb5c41020","lcmsSnapshotId":"93e6e3cc-ab4e-4c70-be1c-b28eb665d2d2","prerequisites":[],"sections":[{"lcmsDocumentId":"81b033ce-65bc-4d0c-a277-43529367c5d7","lcmsSnapshotId":"4228aa97-5034-4364-8d5e-d665b00572f5","src":"cbd8475b-3fb7-41b5-a4e4-20dbb5c41020\/81b033ce-65bc-4d0c-a277-43529367c5d7.json","title":"Practice","type":"matlabInteraction"}],"title":"Name Variables","type":"contentUnit"},"ccfcff84-a840-4126-92a0-c677218a84c4":{"description":"New lesson description","lcmsDocumentId":"ccfcff84-a840-4126-92a0-c677218a84c4","lcmsSnapshotId":"238bbed9-c7bd-4aee-8db8-b2bac350f0e8","prerequisites":[],"sections":[{"jsonSrc":"ccfcff84-a840-4126-92a0-c677218a84c4\/318800f0-9f15-4c99-93e8-762447294ca8.json","lcmsDocumentId":"318800f0-9f15-4c99-93e8-762447294ca8","lcmsSnapshotId":"163f0626-3561-4e35-bc8c-f57ae570cbd0","src":"6380156731112","title":"Video","type":"video"}],"title":"Indexing","type":"contentUnit"},"da042be7-c907-47a8-ab1f-3974b613a8f1":{"description":"Obtain more than one output from a function.","lcmsDocumentId":"da042be7-c907-47a8-ab1f-3974b613a8f1","lcmsSnapshotId":"3c79d167-d31e-4592-8b56-e2a8c7581802","prerequisites":[],"sections":[{"lcmsDocumentId":"829b88d4-e7b5-481e-b7a9-8e46566cdb49","lcmsSnapshotId":"e7a34d73-32ce-4bdf-8fcf-c26ebe3b73fb","src":"da042be7-c907-47a8-ab1f-3974b613a8f1\/829b88d4-e7b5-481e-b7a9-8e46566cdb49.json","title":"Practice","type":"matlabInteraction"}],"title":"Request Multiple Outputs in Function Calls","type":"contentUnit"},"ddcc687b-2054-415e-a4ad-5154782b7718":{"description":"Learn how to interactively import data using the Import Tool.","lcmsDocumentId":"ddcc687b-2054-415e-a4ad-5154782b7718","lcmsSnapshotId":"e104f3b3-acfd-4c3d-8d79-eb606e3a5ba8","prerequisites":[],"sections":[{"jsonSrc":"ddcc687b-2054-415e-a4ad-5154782b7718\/ce14f5a3-bc38-4ef1-8834-cbb11c199599.json","lcmsDocumentId":"ce14f5a3-bc38-4ef1-8834-cbb11c199599","lcmsSnapshotId":"985f65f6-a3da-4145-ad50-8c399d176375","src":"6370707131112","title":"Video","type":"video"}],"title":"Import Tool","type":"contentUnit"}},"contentBaseEndpoint":"https:\/\/matlabacademy-content.mathworks.com\/4.89.1","courseLaunchBaseEndpoint":"https:\/\/matlabacademy.mathworks.com","lrsContentBaseEndpoint":"https:\/\/matlabacademy.mathworks.com","release":"v1","language":"en","semantic":true},
+        isMCD: false,
+        isPreviewMode: false,
+        enableMSCS: true
+    };
+</script>
+
+<script src="./datafile_files/bundle.app.js.Download"></script>
+
+<!-- Adobe DTM footer -->
+<script type="text/javascript">
+    try {
+        _satellite.pageBottom();
+    } catch (e) {
+//something went wrong
+    }
+</script>
+
+
+
+<script>_satellite["_runScript1"](function(event, target, Promise) {
+_satellite.cookie.set("_sdsat_eid",_satellite.getVar('eid'),1);
+});</script><mw-tooltip content="Benutzermenü" id="mw-tooltip-82DF2AAF" role="tooltip" zindex="951"><template shadowrootmode="open"><!----></template></mw-tooltip><mw-tooltip content="Hilfemenü" id="mw-tooltip-458DCE62" role="tooltip" zindex="951"><template shadowrootmode="open"><!----></template></mw-tooltip><mw-tooltip content="Matrix Menu" id="mw-tooltip-C2067865" role="tooltip" zindex="951"><template shadowrootmode="open"><!----></template></mw-tooltip><script>_satellite["_runScript2"](function(event, target, Promise) {
+var inboundCourseName=_satellite.getVar("matlabAcademyCourseName");console.log("course name = "+inboundCourseName),console.log("google = "+typeof gtag),console.log("facebook = "+typeof fbq),console.log("quantcast = "+typeof _qevents);
+});</script><script>
+var server=window.location.hostname,path=window.location.pathname,hasMatlabAcademyDash=server.indexOf("matlabacademy-")>-1,hasMatlabAcademyDot=server.indexOf("matlabacademy.")>-1,isChinaRegion=path.includes("/v1/cn/"),inboundCourseName=_satellite.getVar("matlabAcademyCourseName");console.log("course name = "+inboundCourseName),console.log("google = "+typeof gtag),console.log("facebook = "+typeof fbq),console.log("quantcast = "+typeof _qevents),"undefined"!=typeof fbq&&fbq("track","Lead",{content_category:inboundCourseName,content_name:"MATLAB Academy Start"}),"undefined"!=typeof gtag&&(gtag("event","page_view",{send_to:"AW-1023777138",onrampStatus:"mlac_start",onrampCourse:inboundCourseName}),gtag("event","conversion",{send_to:"AW-1023777138/lJ45CITQqHMQ8rKW6AM"})),_satellite.track("quantcastBase"),_satellite.logger.info("quantcastBase fired"),"undefined"!=typeof _qevents&&(_satellite.logger.info("quantcast base & conversion fired"),_qevents.push({qacct:"p-zfNtLVVEHXE-1",labels:"_fp.event.Course Started,_fp.coursename."+inboundCourseName,event:"refresh"})),"undefined"!=typeof ytag&&(ytag({type:"yss_conversion",config:{yahoo_conversion_id:"1000315120",yahoo_conversion_label:"sxEECOaF2t4BEMupjrgD",yahoo_conversion_value:"1"}}),ytag({type:"yjad_conversion",config:{yahoo_ydn_conv_io:"g4ZvwO4OLDVmfCZwx5Sw",yahoo_ydn_conv_label:"A5FS31DXIQ0FNK2G4SL736262",yahoo_ydn_conv_value:"1"}})),_satellite.track("bingBaseChina"),_satellite.logger.info("inboundBingBase China fired"),window.uetq=window.uetq||[],void 0!==window.uetq&&(_satellite.logger.info("Bing base China & conversion fired"),window.uetq.push({ea:"mlac_start",el:inboundCourseName}));
+</script><script>_satellite["_runScript3"](function(event, target, Promise) {
+!function(e,a,n,t,o){var c,r,d;e[o]=e[o]||[],c=function(){var a={ti:"343102867",enableAutoSpaTracking:!0};a.q=e[o],e[o]=new UET(a),e[o].push("pageLoad")},(r=a.createElement(n)).src=t,r.async=1,r.onload=r.onreadystatechange=function(){var e=this.readyState;e&&"loaded"!==e&&"complete"!==e||(c(),r.onload=r.onreadystatechange=null)},(d=a.getElementsByTagName(n)[0]).parentNode.insertBefore(r,d)}(window,document,"script","//bat.bing.com/bat.js","uetq");
+});</script><div id="batBeacon507274514657" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon353107073388" width="0" height="0" alt="" src="./datafile_files/0" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon982148658311" width="0" height="0" alt="" src="./datafile_files/0(1)" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon505281834608" width="0" height="0" alt="" src="./datafile_files/0(2)" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon507846571591" width="0" height="0" alt="" src="./datafile_files/0(3)" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon240994277826" width="0" height="0" alt="" src="./datafile_files/0(4)" style="width: 0px; height: 0px; display: none; visibility: hidden;"></div></body></html>
