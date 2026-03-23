@@ -1,0 +1,169 @@
+#include <Wire.h>
+#include <Pixy2I2C.h>
+
+Pixy2I2C pixy;
+
+// Motor pins
+#define PWMA   6
+#define AIN2   A0
+#define AIN1   A1
+#define PWMB   5
+#define BIN1   A2
+#define BIN2   A3
+
+// GY-85 (HMC5883L inside)
+#define HMC_ADDR 0x1E
+
+float lastHeading = 0;
+float lastYawRate = 0;
+unsigned long lastTime = 0;
+
+const float alpha = 0.2;
+const float deadband = 1.0;
+
+void setup() {
+  Serial.begin(115200);   // Bluetooth + Serial Monitor (if used)
+
+  Wire.begin();
+
+  pixy.init();
+  pixy.changeProg("line");
+
+  pinMode(PWMA, OUTPUT);
+  pinMode(AIN1, OUTPUT);
+  pinMode(AIN2, OUTPUT);
+
+  pinMode(PWMB, OUTPUT);
+  pinMode(BIN1, OUTPUT);
+  pinMode(BIN2, OUTPUT);
+
+  // Initialize magnetometer
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x00);
+  Wire.write(0x70);
+  Wire.endTransmission();
+
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x01);
+  Wire.write(0xA0);
+  Wire.endTransmission();
+
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x02);
+  Wire.write(0x00);
+  Wire.endTransmission();
+
+  lastTime = millis();
+
+  Serial.println("SYSTEM_READY");
+}
+
+// Motor control (correct forward direction)
+void setMotor(int leftSpeed, int rightSpeed) {
+
+  // LEFT motor
+  if (leftSpeed >= 0) {
+    digitalWrite(AIN1, HIGH);
+    digitalWrite(AIN2, LOW);
+  } else {
+    digitalWrite(AIN1, LOW);
+    digitalWrite(AIN2, HIGH);
+  }
+  analogWrite(PWMA, abs(leftSpeed));
+
+  // RIGHT motor
+  if (rightSpeed >= 0) {
+    digitalWrite(BIN1, HIGH);
+    digitalWrite(BIN2, LOW);
+  } else {
+    digitalWrite(BIN1, LOW);
+    digitalWrite(BIN2, HIGH);
+  }
+  analogWrite(PWMB, abs(rightSpeed));
+}
+
+void loop() {
+
+  /* -------- PIXY LINE TRACKING -------- */
+  pixy.line.getMainFeatures();
+
+  int error = 0;
+  bool lineDetected = false;
+
+  if (pixy.line.numVectors) {
+    int x0 = pixy.line.vectors[0].m_x0;
+    int x1 = pixy.line.vectors[0].m_x1;
+
+    int lineCenter = (x0 + x1) / 2;
+    int frameCenter = 39;
+
+    error = lineCenter - frameCenter;
+    lineDetected = true;
+  }
+
+  int leftSpeed = 0;
+  int rightSpeed = 0;
+
+  if (lineDetected) {
+    int baseSpeed = 120;
+    int turn = error * 2;
+
+    leftSpeed  = baseSpeed - turn;
+    rightSpeed = baseSpeed + turn;
+
+    leftSpeed  = constrain(leftSpeed, 0, 255);
+    rightSpeed = constrain(rightSpeed, 0, 255);
+  } else {
+    leftSpeed = 0;
+    rightSpeed = 0;
+  }
+
+  setMotor(leftSpeed, rightSpeed);
+
+  /* -------- GY-85 MAGNETOMETER -------- */
+  int16_t X, Y, Z;
+
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x03);
+  Wire.endTransmission();
+  Wire.requestFrom(HMC_ADDR, 6);
+
+  if (Wire.available() == 6) {
+    X = Wire.read() << 8 | Wire.read();
+    Z = Wire.read() << 8 | Wire.read();
+    Y = Wire.read() << 8 | Wire.read();
+  } else {
+    return;
+  }
+
+  float heading = atan2((float)Y, (float)X) * 180.0 / 3.14159;
+  if (heading < 0) heading += 360;
+
+  unsigned long now = millis();
+  float dt = (now - lastTime) / 1000.0;
+  lastTime = now;
+
+  float delta = heading - lastHeading;
+  if (delta > 180) delta -= 360;
+  if (delta < -180) delta += 360;
+
+  if (abs(delta) < deadband) delta = 0;
+
+  float yawRateRaw = delta / dt;
+  float yawRate = alpha * yawRateRaw + (1 - alpha) * lastYawRate;
+
+  lastYawRate = yawRate;
+  lastHeading = heading;
+
+  /* -------- TELEMETRY OUTPUT (JSON) -------- */
+  Serial.print("{");
+  Serial.print("\"line\":"); Serial.print(lineDetected ? 1 : 0); Serial.print(",");
+  Serial.print("\"error\":"); Serial.print(error); Serial.print(",");
+  Serial.print("\"heading\":"); Serial.print(heading, 2); Serial.print(",");
+  Serial.print("\"yawRate\":"); Serial.print(yawRate, 2); Serial.print(",");
+  Serial.print("\"leftSpeed\":"); Serial.print(leftSpeed); Serial.print(",");
+  Serial.print("\"rightSpeed\":"); Serial.print(rightSpeed);
+  Serial.println("}");
+
+  delay(50);
+}
