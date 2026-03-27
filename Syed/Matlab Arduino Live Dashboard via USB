@@ -1,0 +1,60 @@
+%% Arduino Live Dashboard via USB (COM12)
+clc; clear;
+
+% USB port for your Arduino
+usbPort = "COM12";  
+baudRate = 115200;
+
+disp("Connecting to Arduino via USB on port " + usbPort + " ...");
+
+try
+    arduinoSerial = serialport(usbPort, baudRate, "Timeout", 2);
+    configureTerminator(arduinoSerial,"CR/LF");
+    flush(arduinoSerial);
+    pause(2);  % wait for Arduino to start sending
+    disp("Connected successfully!");
+catch
+    error("Unable to connect to Arduino. Make sure USB is plugged in and port is correct.");
+end
+
+%% Setup live plotting dashboard
+figure('Name','Arduino Live Dashboard','NumberTitle','off');
+hLineError = animatedline('Color','r','DisplayName','LineError');
+hHeading   = animatedline('Color','b','DisplayName','Heading');
+hYawAngle  = animatedline('Color','g','DisplayName','YawAngle');
+hLeftPower = animatedline('Color','m','DisplayName','LeftPower');
+hRightPower= animatedline('Color','c','DisplayName','RightPower');
+legend show;
+ax = gca; ax.YLim = [-500 500]; xlabel('Time (s)'); ylabel('Value'); grid on;
+startTime = datetime('now');
+
+disp("Starting live data... Press Ctrl+C to stop.");
+
+%% Continuously read and plot Arduino data
+while ishandle(hLineError)
+    try
+        dataLine = readline(arduinoSerial);
+        fprintf("%s\n", dataLine);
+        
+        % Parse Arduino data
+        heading    = str2double(regexp(dataLine,'Heading:\s*([0-9\.\-]+)','tokens','once'));
+        yawAngle   = str2double(regexp(dataLine,'YawAngle:\s*([0-9\.\-]+)','tokens','once'));
+        lineError  = str2double(regexp(dataLine,'LineError:\s*([0-9\.\-]+)','tokens','once'));
+        leftPower  = str2double(regexp(dataLine,'LeftPower:\s*([0-9\.\-]+)','tokens','once'));
+        rightPower = str2double(regexp(dataLine,'RightPower:\s*([0-9\.\-]+)','tokens','once'));
+        
+        % Update plots
+        t = seconds(datetime('now') - startTime);
+        if ~isempty(lineError), addpoints(hLineError, t, lineError); end
+        if ~isempty(heading),   addpoints(hHeading,   t, heading);   end
+        if ~isempty(yawAngle),  addpoints(hYawAngle,  t, yawAngle);  end
+        if ~isempty(leftPower), addpoints(hLeftPower, t, leftPower); end
+        if ~isempty(rightPower),addpoints(hRightPower,t, rightPower);end
+        
+        drawnow limitrate;
+    catch
+        warning("Error reading data. Retrying in 0.5s...");
+        pause(0.5);
+    end
+end
+
