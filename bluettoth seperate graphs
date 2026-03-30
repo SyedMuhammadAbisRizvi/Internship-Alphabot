@@ -1,0 +1,80 @@
+%% Arduino Bluetooth Dashboard with Separate Graphs
+clc; clear;
+
+disp('Starting Arduino Bluetooth dashboard...');
+disp('Make sure HC-05/HC-06 is powered, paired, and Arduino sketch is running.');
+
+%% ------------------- Connection Setup -------------------
+btDevice = "COM5";    % Replace with your HC-05 COM port
+baudRate = 9600;
+
+% Connect to HC-05 / Sensor02
+try
+    HC05 = bluetooth("Sensor02",1); % Channel 1 for SPP
+    configureTerminator(HC05,"LF");  % Arduino sends lines ending with \n
+    flush(HC05); pause(1);
+    disp('Bluetooth connection established.');
+catch
+    error('Could not connect to Sensor02. Make sure it is paired and powered.');
+end
+
+%% ------------------- Initialize Subplots -------------------
+fig = figure('Name','Arduino Dashboard - Separate Graphs','NumberTitle','off');
+
+subplot(4,2,1); hHeading     = animatedline('Color','r'); title('Heading'); xlabel('Time (s)'); ylabel('deg'); grid on;
+subplot(4,2,2); hYawAngle    = animatedline('Color','b'); title('YawAngle'); xlabel('Time (s)'); ylabel('deg'); grid on;
+subplot(4,2,3); hYawRate     = animatedline('Color','g'); title('YawRateGyro'); xlabel('Time (s)'); ylabel('deg/s'); grid on;
+subplot(4,2,4); hLineError   = animatedline('Color','m'); title('LineError'); xlabel('Time (s)'); ylabel('px'); grid on;
+subplot(4,2,5); hLeftPower   = animatedline('Color','c'); title('LeftPower'); xlabel('Time (s)'); ylabel('PWM'); grid on;
+subplot(4,2,6); hRightPower  = animatedline('Color','k'); title('RightPower'); xlabel('Time (s)'); ylabel('PWM'); grid on;
+subplot(4,2,7); hLineDetect  = animatedline('Color',[0 0.5 0]); title('LineDetected'); xlabel('Time (s)'); ylabel('0/1'); ylim([-0.1 1.1]); grid on;
+
+startTime = datetime('now');
+disp('Receiving data...');
+
+%% ------------------- Main Loop -------------------
+while ishandle(fig)
+    try
+        if HC05.NumBytesAvailable > 0
+            line = readline(HC05);
+            if isempty(line)
+                continue;
+            end
+
+            % Split line into tokens
+            tokens = split(line,"|");
+            if length(tokens) < 7
+                continue;
+            end
+
+            % Parse numeric values
+            HeadingVal     = str2double(extractAfter(tokens{1}, ":"));
+            YawAngleVal    = str2double(extractAfter(tokens{2}, ":"));
+            YawRateVal     = str2double(extractAfter(tokens{3}, ":"));
+            LineErrorVal   = str2double(extractAfter(tokens{4}, ":"));
+            LeftPowerVal   = str2double(extractAfter(tokens{5}, ":"));
+            RightPowerVal  = str2double(extractAfter(tokens{6}, ":"));
+            LineDetectedVal= str2double(extractAfter(tokens{7}, ":"));
+
+            if any(isnan([HeadingVal,YawAngleVal,YawRateVal,LineErrorVal,LeftPowerVal,RightPowerVal,LineDetectedVal]))
+                continue;
+            end
+
+            tNow = seconds(datetime('now') - startTime);
+
+            % Add points to each subplot
+            subplot(4,2,1); addpoints(hHeading,tNow,HeadingVal);
+            subplot(4,2,2); addpoints(hYawAngle,tNow,YawAngleVal);
+            subplot(4,2,3); addpoints(hYawRate,tNow,YawRateVal);
+            subplot(4,2,4); addpoints(hLineError,tNow,LineErrorVal);
+            subplot(4,2,5); addpoints(hLeftPower,tNow,LeftPowerVal);
+            subplot(4,2,6); addpoints(hRightPower,tNow,RightPowerVal);
+            subplot(4,2,7); addpoints(hLineDetect,tNow,LineDetectedVal);
+
+            drawnow limitrate
+        end
+    catch ME
+        warning('Bluetooth read failed: %s', ME.message);
+        pause(0.5);
+    end
+end
