@@ -1,0 +1,113 @@
+%% ===================== Arduino Bluetooth Dashboard with Buffer =====================
+clc; clear;
+
+disp('Starting Arduino Bluetooth dashboard...');
+disp('Make sure HC-05/HC-06 is powered, paired, and Arduino sketch is running.');
+
+%% ------------------- Connection Setup -------------------
+btDevice = "COM5";    % Replace with your HC-05 COM port
+
+try
+    HC05 = bluetooth("Sensor02",1); % Channel 1 for SPP
+    configureTerminator(HC05,"LF"); % Arduino sends lines ending with \n
+    flush(HC05); pause(1);
+    disp('Bluetooth connection established.');
+catch
+    error('Could not connect to Sensor02. Make sure it is paired and powered.');
+end
+
+%% ------------------- Initialize Subplots and Animated Lines -------------------
+fig = figure('Name','Arduino Dashboard with Buffer','NumberTitle','off');
+
+ax1 = subplot(4,2,1); hHeading     = animatedline('Parent',ax1,'Color','r'); title('Heading'); xlabel('Time (s)'); ylabel('deg'); grid on;
+ax2 = subplot(4,2,2); hYawAngle    = animatedline('Parent',ax2,'Color','b'); title('YawAngle'); xlabel('Time (s)'); ylabel('deg'); grid on;
+ax3 = subplot(4,2,3); hYawRate     = animatedline('Parent',ax3,'Color','g'); title('YawRateGyro'); xlabel('Time (s)'); ylabel('deg/s'); grid on;
+ax4 = subplot(4,2,4); hLineError   = animatedline('Parent',ax4,'Color','m'); title('LineError'); xlabel('Time (s)'); ylabel('px'); grid on;
+ax5 = subplot(4,2,5); hLeftPower   = animatedline('Parent',ax5,'Color','c'); title('LeftPower'); xlabel('Time (s)'); ylabel('PWM'); grid on;
+ax6 = subplot(4,2,6); hRightPower  = animatedline('Parent',ax6,'Color','k'); title('RightPower'); xlabel('Time (s)'); ylabel('PWM'); grid on;
+ax7 = subplot(4,2,7); hLineDetect  = animatedline('Parent',ax7,'Color',[0 0.5 0]); title('LineDetected'); xlabel('Time (s)'); ylabel('0/1'); ylim([-0.1 1.1]); grid on;
+
+startTime = datetime('now');
+
+%% ------------------- Initialize Buffer -------------------
+BUFFER_SIZE = 500; % number of data points to store
+buffer.time      = nan(1,BUFFER_SIZE);
+buffer.heading   = nan(1,BUFFER_SIZE);
+buffer.yawAngle  = nan(1,BUFFER_SIZE);
+buffer.yawRate   = nan(1,BUFFER_SIZE);
+buffer.lineError = nan(1,BUFFER_SIZE);
+buffer.leftPower = nan(1,BUFFER_SIZE);
+buffer.rightPower= nan(1,BUFFER_SIZE);
+buffer.lineDetect= nan(1,BUFFER_SIZE);
+buffer.idx       = 1;  % points to next insert
+
+disp('Receiving data...');
+
+%% ------------------- Main Loop -------------------
+while ishandle(fig)
+    try
+        % Only try reading if data is available
+        if HC05.NumBytesAvailable > 0
+            try
+                line = readline(HC05);
+            catch
+                pause(0.01);
+                continue;
+            end
+            
+            if isempty(line)
+                continue;
+            end
+            
+            tokens = split(line,'|');
+            if numel(tokens) < 7
+                continue;
+            end
+
+            % Convert data to numeric
+            HeadingVal      = str2double(extractAfter(tokens{1}, ":"));
+            YawAngleVal     = str2double(extractAfter(tokens{2}, ":"));
+            YawRateVal      = str2double(extractAfter(tokens{3}, ":"));
+            LineErrorVal    = str2double(extractAfter(tokens{4}, ":"));
+            LeftPowerVal    = str2double(extractAfter(tokens{5}, ":"));
+            RightPowerVal   = str2double(extractAfter(tokens{6}, ":"));
+            LineDetectedVal = str2double(extractAfter(tokens{7}, ":"));
+
+            if any(isnan([HeadingVal,YawAngleVal,YawRateVal,LineErrorVal,LeftPowerVal,RightPowerVal,LineDetectedVal]))
+                continue;
+            end
+
+            % Compute timestamp
+            tNow = seconds(datetime('now') - startTime);
+
+            % ------------------- Store in Buffer -------------------
+            buffer.time(buffer.idx)      = tNow;
+            buffer.heading(buffer.idx)   = HeadingVal;
+            buffer.yawAngle(buffer.idx)  = YawAngleVal;
+            buffer.yawRate(buffer.idx)   = YawRateVal;
+            buffer.lineError(buffer.idx) = LineErrorVal;
+            buffer.leftPower(buffer.idx) = LeftPowerVal;
+            buffer.rightPower(buffer.idx)= RightPowerVal;
+            buffer.lineDetect(buffer.idx)= LineDetectedVal;
+            
+            % Increment buffer index (circular buffer)
+            buffer.idx = mod(buffer.idx, BUFFER_SIZE) + 1;
+
+            % ------------------- Update Graph -------------------
+            addpoints(hHeading, tNow, HeadingVal);
+            addpoints(hYawAngle, tNow, YawAngleVal);
+            addpoints(hYawRate, tNow, YawRateVal);
+            addpoints(hLineError, tNow, LineErrorVal);
+            addpoints(hLeftPower, tNow, LeftPowerVal);
+            addpoints(hRightPower, tNow, RightPowerVal);
+            addpoints(hLineDetect, tNow, LineDetectedVal);
+            
+            drawnow limitrate;
+        else
+            pause(0.01); % avoid busy loop
+        end
+    catch ME
+        warning('Bluetooth read failed: %s', ME.message);
+        pause(0.5);
+    end
+end
