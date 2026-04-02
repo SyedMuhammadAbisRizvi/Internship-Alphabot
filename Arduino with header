@@ -1,0 +1,200 @@
+/*******************************************************************************************************
+          Hochschule Hamm-Lippstadt
+ *******************************************************************************************************
+  Modul           :   AlphaBot
+
+  Date           :   30.03.2026
+
+  Funktion        :   Lane detection with pixy2 camera and recording yaw rate and yaw angle.
+
+  Hardware        :   UNO PLUS, Alphabot, GY-85 IMU, HC-05 Blutoothmodul.
+  Implementation  :   Arduino IDE 2.3.86
+
+  Author          :  Syed Muhammad Abis Rizvi
+
+  Note       :   Controller component and manipulated variable calculation by Prof. Schneider
+ 
+ Last Modified :   30.03.2026
+
+ 
+*******************************************************************************************************/
+#include <Wire.h>
+#include <Pixy2I2C.h>
+
+Pixy2I2C pixy;
+
+// ===================== MOTOR PINS =========================
+#define PWMA   6
+#define AIN2   A0
+#define AIN1   A1
+#define PWMB   5
+#define BIN1   A2
+#define BIN2   A3
+
+// ===================== SENSOR ADDRESSES ==================
+#define HMC_ADDR 0x1E   // Magnetometer HMC5883L
+#define ITG_ADDR 0x68   // Gyroscope ITG3205 on GY-85
+
+// ===================== PID PARAMETERS =====================
+float Kp = 1.4;
+float Ki = 0.0;
+float Kd = 8.0;
+
+int lastError = 0;
+float integral = 0;
+
+// ===================== ORIENTATION VARIABLES =============
+float yawAngle = 0;
+float lastHeading = 0;
+unsigned long lastTime = 0;
+
+// ===================== MAGNETOMETER OFFSETS ==============
+float offsetX = 0; // Calibrate after first run
+float offsetY = 0;
+
+// ===================== SETUP ==============================
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+
+  // Initialize Pixy line tracker
+  pixy.init();
+  pixy.changeProg("line");
+
+  // Motor pins
+  pinMode(PWMA, OUTPUT);
+  pinMode(AIN1, OUTPUT);
+  pinMode(AIN2, OUTPUT);
+  pinMode(PWMB, OUTPUT);
+  pinMode(BIN1, OUTPUT);
+  pinMode(BIN2, OUTPUT);
+
+  // Initialize HMC5883L magnetometer
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x00); Wire.write(0x70); // Config A
+  Wire.endTransmission();
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x01); Wire.write(0xA0); // Gain
+  Wire.endTransmission();
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x02); Wire.write(0x00); // Continuous mode
+  Wire.endTransmission();
+
+  // Initialize ITG3205 gyro
+  Wire.beginTransmission(ITG_ADDR);
+  Wire.write(0x3E); Wire.write(0x00); // Power management
+  Wire.endTransmission();
+
+  lastTime = millis();
+  Serial.println("SYSTEM_READY");
+}
+
+// ===================== MOTOR CONTROL ======================
+void setMotor(int leftSpeed, int rightSpeed) {
+  // LEFT MOTOR
+  if (leftSpeed >= 0) { digitalWrite(AIN1,HIGH); digitalWrite(AIN2,LOW); }
+  else { digitalWrite(AIN1,LOW); digitalWrite(AIN2,HIGH); }
+  analogWrite(PWMA, abs(leftSpeed));
+
+  // RIGHT MOTOR
+  if (rightSpeed >= 0) { digitalWrite(BIN1,HIGH); digitalWrite(BIN2,LOW); }
+  else { digitalWrite(BIN1,LOW); digitalWrite(BIN2,HIGH); }
+  analogWrite(PWMB, abs(rightSpeed));
+}
+
+// ===================== READ MAGNETOMETER ==================
+float readHeading() {
+  int16_t X,Y,Z;
+  Wire.beginTransmission(HMC_ADDR);
+  Wire.write(0x03);
+  Wire.endTransmission();
+  Wire.requestFrom(HMC_ADDR,6);
+  if (Wire.available() != 6) return lastHeading;
+
+  X = Wire.read()<<8 | Wire.read();
+  Z = Wire.read()<<8 | Wire.read();
+  Y = Wire.read()<<8 | Wire.read();
+
+  float correctedX = X - offsetX;
+  float correctedY = Y - offsetY;
+
+  float heading = atan2(correctedY, correctedX) * 180.0 / PI;
+  if (heading < 0) heading += 360;
+
+  lastHeading = heading;
+  return heading;
+}
+
+// ===================== READ GYRO Z =========================
+float readGyroZ() {
+  int16_t gyroZ;
+  Wire.beginTransmission(ITG_ADDR);
+  Wire.write(0x1D); // Z-axis high byte
+  Wire.endTransmission();
+  Wire.requestFrom(ITG_ADDR,2);
+  if(Wire.available() != 2) return 0;
+  gyroZ = Wire.read()<<8 | Wire.read();
+  return gyroZ / 14.375; // deg/sec
+}
+
+// ===================== MAIN LOOP ==========================
+void loop() {
+  unsigned long now = millis();
+  float dt = (now - lastTime)/1000.0;
+  if(dt <= 0 || dt > 0.5) dt = 0.05;
+  lastTime = now;
+
+  // -------- LINE TRACKING ----------
+  pixy.line.getMainFeatures();
+  int error = 0;
+  bool lineDetected = false;
+
+  if (pixy.line.numVectors) {
+    int x0 = pixy.line.vectors[0].m_x0;
+    int x1 = pixy.line.vectors[0].m_x1;
+    int lineCenter = (x0+x1)/2;
+    int frameCenter = 39;
+    error = lineCenter - frameCenter;
+    lineDetected = true;
+  }
+
+  // -------- PID CONTROL ----------
+  int baseSpeed = 120;
+  int leftSpeed = 0;
+  int rightSpeed = 0;
+
+  if(lineDetected){
+    int derivative = error - lastError;
+    integral += error;
+    int turn = Kp*error + Ki*integral + Kd*derivative;
+    leftSpeed = constrain(baseSpeed - turn, -255, 255);
+    rightSpeed = constrain(baseSpeed + turn, -255, 255);
+    lastError = error;
+  } else {
+    leftSpeed = 0;
+    rightSpeed = 0;
+  }
+
+  // -------- ORIENTATION ESTIMATION ----------
+  float heading = readHeading();
+  float gyroRate = readGyroZ();  // deg/sec
+
+  // Complementary filter for yaw angle
+  yawAngle = 0.98*(yawAngle + gyroRate*dt) + 0.02*heading;
+  if(yawAngle >= 360) yawAngle -= 360;
+  if(yawAngle < 0) yawAngle += 360;
+
+  // -------- APPLY MOTOR SPEED ----------
+  setMotor(leftSpeed, rightSpeed);
+
+  // -------- SERIAL OUTPUT ----------
+Serial.print("Heading:"); Serial.print(heading);
+Serial.print("|YawAngle:"); Serial.print(yawAngle);
+Serial.print("|GyroRate:"); Serial.print(gyroRate);
+Serial.print("|Error:"); Serial.print(error);
+Serial.print("|LineDetected:"); Serial.print(lineDetected?1:0);
+Serial.print("|LeftPower:"); Serial.print(leftSpeed);
+Serial.print("|RightPower:"); Serial.println(rightSpeed);;
+
+  delay(20); // ~50Hz
+}
