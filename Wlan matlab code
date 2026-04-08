@@ -1,0 +1,82 @@
+%% 
+clc;
+clear;
+
+url = 'http://192.168.1.22';
+
+%% Create figure with 2 subplots
+figure('Name','Heading and Yaw Rate','NumberTitle','off');
+
+% Heading subplot
+subplot(2,1,1); % 2 rows, 1 column, first plot
+hHeading = plot(NaN, NaN, 'b', 'LineWidth', 2);
+xlabel('Time (s)');
+ylabel('Heading (deg)');
+title('Real-Time Heading');
+grid on;
+xlim([0 100]);
+ylim([0 360]); % Adjust as needed
+
+% Yaw Rate subplot
+subplot(2,1,2); % 2 rows, 1 column, second plot
+hYaw = plot(NaN, NaN, 'r', 'LineWidth', 2);
+xlabel('Time (s)');
+ylabel('Yaw Rate (deg/s)');
+title('Real-Time Yaw Rate');
+grid on;
+xlim([0 100]);
+ylim([-50 50]); % Adjust as needed
+
+%% Initialize data arrays
+timeData = [];
+headingData = [];
+yawRateData = [];
+tStart = tic;
+
+%% Main loop
+while true
+    try
+        % Get HTML content from Arduino
+        data = webread(url);
+
+        % Extract Heading and Yaw Rate
+        heading_match = regexp(data, 'Heading:\s*([\d\.]+)', 'tokens');
+        yaw_match = regexp(data, 'Yaw Rate:\s*([\d\.]+)', 'tokens');
+
+        if ~isempty(heading_match) && ~isempty(yaw_match)
+            heading = str2double(heading_match{1});
+            yawRate = str2double(yaw_match{1});
+
+            % Display values
+            fprintf('Heading: %.2f deg | Yaw Rate: %.2f deg/s\n', heading, yawRate);
+
+            % Update data arrays
+            elapsedTime = toc(tStart);
+            timeData(end+1) = elapsedTime;
+            headingData(end+1) = heading;
+            yawRateData(end+1) = yawRate;
+
+            % Update Heading plot
+            subplot(2,1,1);
+            set(hHeading, 'XData', timeData, 'YData', headingData);
+            if elapsedTime > 100
+                xlim([elapsedTime-100 elapsedTime]);
+            end
+
+            % Update Yaw Rate plot
+            subplot(2,1,2);
+            set(hYaw, 'XData', timeData, 'YData', yawRateData);
+            if elapsedTime > 100
+                xlim([elapsedTime-100 elapsedTime]);
+            end
+
+            drawnow limitrate; % Refresh plots efficiently
+        else
+            disp('Data not found');
+        end
+
+    catch ME
+        disp('Connection error...');
+        disp(ME.message);
+    end
+end
