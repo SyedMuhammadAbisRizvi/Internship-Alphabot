@@ -1,0 +1,31 @@
+#include <Pixy2.h>
+
+Pixy2 pixy;
+
+void setup() {
+  Serial.begin(115200);
+  pixy.init();
+  
+  // Switch Pixy2 from default color mode to line tracking mode
+  pixy.changeProg("line"); 
+}
+
+void loop() {
+  int8_t res;
+  
+  // Fetch line, intersection, and barcode data
+  res = pixy.line.getMainFeatures();
+
+  // If a line (Vector) is found
+  if (res & LINE_VECTOR) {
+    // m_x1 is the far end of the line (where we want to go)
+    // Subtracting the center (usually 158) gives you the steering error
+    int error = (int)pixy.line.vectors->m_x1 - (pixy.frameWidth / 2);
+    
+    Serial.print("Steering Error: ");
+    Serial.println(error);
+    
+    // Positive error = line is to the right
+    // Negative error = line is to the left
+  }
+}
