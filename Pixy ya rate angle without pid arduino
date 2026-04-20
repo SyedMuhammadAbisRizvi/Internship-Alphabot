@@ -1,0 +1,88 @@
+#include <WiFiS3.h>
+#include <Wire.h>
+#include <Pixy2I2C.h>
+
+// ===== WiFi Credentials =====
+char ssid[] = "AutonomeSysteme";
+char pass[] = "Kennwort1";
+WiFiServer server(80);
+
+// ===== Sensors & Motors =====
+Pixy2I2C pixy;
+#define ITG3205_ADDR 0x68
+#define ENA 5
+#define ENB 6
+#define IN1 A1
+#define IN2 A0
+#define IN3 A2
+#define IN4 A3
+
+// ===== Settings =====
+int baseSpeed = 120;
+int sideOffset = 24;
+const int frameCenter = 39;
+
+// ===== Passive Gyro Variables =====
+float yawAngle = 0;
+float currentYawRate = 0;
+float gyroOffsetZ = 0;
+unsigned long lastMicros = 0;
+
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+  Wire.setClock(400000);
+
+  // 1. Initialize Gyro (ITG3205)
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x3E); Wire.write(0x00); Wire.endTransmission();
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x16); Wire.write(0x1D); Wire.endTransmission();
+
+  // 2. Calibrate Gyro (Robot must be stationary)
+  Serial.println("Calibrating Gyro... Do not move.");
+  long sumZ = 0;
+  for (int i = 0; i < 500; i++) { 
+    sumZ += readRawGyroZ(); 
+    delay(2); 
+  }
+  gyroOffsetZ = sumZ / 500.0;
+
+  // 3. Initialize Pixy & Motors
+  pixy.init();
+  pixy.changeProg("line");
+  pinMode(ENA, OUTPUT); pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+
+  // 4. WiFi Connection
+  Serial.print("Connecting to WiFi...");
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) { 
+    delay(500); 
+    Serial.print("."); 
+  }
+  server.begin();
+
+  lastMicros = micros();
+  Serial.println("\nRobot Online! IP Address: " + WiFi.localIP().toString());
+}
+
+void loop() {
+  calculatePassiveGyro();
+  followLine();
+  handleWiFiClient();
+}
+
+void calculatePassiveGyro() {
+  unsigned long now = micros();
+  float dt = (now - lastMicros) / 1000000.0;
+  lastMicros = now;
+
+  // Sensitivity for ITG3205 is 14.375 LSB per degree/sec
+  currentYawRate = (readRawGyroZ() - gyroOffsetZ) / 14.375;
+  yawAngle += currentYawRate * dt;
+}
+
+void followLine() {
+  pixy.line.getMainFeatures();
