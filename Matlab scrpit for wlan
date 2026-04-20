@@ -1,0 +1,35 @@
+url = 'http://192.168.1.23'; % Make sure this matches your Arduino IP
+figure('Name', 'Robot Data');
+tStart = tic;
+
+timeData = [];
+angleData = [];
+rateData = [];
+
+while true
+    try
+        % 1. Get raw text from the Arduino web server
+        data = webread(url);
+        
+        % 2. Extract numbers using simplified search
+        angle = str2double(regexp(data, '(?<=Yaw Angle:</b>\s*)-?\d+\.?\d*', 'match'));
+        rate = str2double(regexp(data, '(?<=Yaw Rate:</b>\s*)-?\d+\.?\d*', 'match'));
+        
+        % 3. Store and Plot
+        t = toc(tStart);
+        timeData(end+1) = t;
+        angleData(end+1) = angle;
+        rateData(end+1) = rate;
+        
+        subplot(2,1,1); plot(timeData, angleData, 'b'); ylabel('Yaw Angle (deg)'); title('Yaw Angle');
+        subplot(2,1,2); plot(timeData, rateData, 'r'); ylabel('Yaw Rate (deg/s)'); title('Yaw Rate');
+        
+        fprintf('T: %.1fs | Yaw Angle: %.1f | Yaw Rate: %.1f\n', t, angle, rate);
+        drawnow;
+        pause(0.1);
+        
+    catch
+        disp('Waiting for connection...');
+        pause(1);
+    end
+end
