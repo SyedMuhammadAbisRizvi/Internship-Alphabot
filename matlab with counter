@@ -1,0 +1,62 @@
+url = 'http://192.168.1.23';
+figure('Name', 'AlphaBot Data');
+
+tStart = tic;
+
+timeData = [];
+angleData = [];
+rateData = [];
+countData = [];
+
+count = 0;
+
+while true
+try
+% 1. Get raw text from the Arduino web server
+data = webread(url);
+
+
+    % 2. Extract numbers
+    angle = str2double(regexp(data, '(?<=Yaw Angle:</b>\s*)-?\d+\.?\d*', 'match'));
+    rate  = str2double(regexp(data, '(?<=Yaw Rate:</b>\s*)-?\d+\.?\d*', 'match'));
+    
+    % 3. Increase counter when valid data arrives
+    count = count + 1;
+    
+    % 4. Store data
+    t = toc(tStart);
+    timeData(end+1) = t;
+    angleData(end+1) = angle;
+    rateData(end+1) = rate;
+    countData(end+1) = count;
+    
+    % 5. Plot
+    subplot(3,1,1);
+    plot(timeData, angleData, 'b');
+    ylabel('Yaw Angle (deg)');
+    title('Yaw Angle');
+    
+    subplot(3,1,2);
+    plot(timeData, rateData, 'r');
+    ylabel('Yaw Rate (deg/s)');
+    title('Yaw Rate');
+    
+    subplot(3,1,3);
+    stairs(timeData, countData, 'k');
+    ylabel('Count');
+    title('Received Data Counter');
+    
+    % 6. Print
+    fprintf('T: %.1fs | Angle: %.1f | Rate: %.1f | Count: %d\n', ...
+        t, angle, rate, count);
+    
+    drawnow;
+    pause(0.1);
+    
+catch
+    disp('Waiting for connection...');
+    pause(1);
+end
+
+end
+
