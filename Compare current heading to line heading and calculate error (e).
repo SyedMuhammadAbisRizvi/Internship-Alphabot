@@ -1,0 +1,105 @@
+#include <Wire.h>
+#include <Pixy2I2C.h>
+
+// Sensor Definitions
+#define ITG3205_ADDR 0x68
+Pixy2I2C pixy;
+
+// Constants
+const int frameCenterX = 39; 
+const float gyroSensitivity = 14.375; 
+
+// State Variables
+float gyroOffsetZ = 0;
+float yawAngle = 0;      // Integrated Yaw Angle
+float lastError = 0;
+unsigned long lastMicros = 0;
+
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+  Wire.setClock(400000);
+
+  // 1. Initialize Gyro
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x3E); Wire.write(0x00); 
+  Wire.endTransmission();
+  
+  // 2. Gyro Calibration
+  Serial.println("Calibrating... Stand still.");
+  long sum = 0;
+  for (int i = 0; i < 500; i++) {
+    sum += readRawGyroZ();
+    delay(2);
+  }
+  gyroOffsetZ = sum / 500.0;
+  Serial.println("Done.");
+
+  pixy.init();
+  pixy.changeProg("line");
+  lastMicros = micros();
+}
+
+void loop() {
+  // --- A. Calculate Time Delta (dt) ---
+  unsigned long now = micros();
+  float dt = (now - lastMicros) / 1000000.0; 
+  if (dt <= 0) dt = 0.001;
+  lastMicros = now;
+
+  // --- B. Gyroscope Processing (Rate & Angle) ---
+  int16_t rawZ = readRawGyroZ();
+  float currentYawRate = (rawZ - gyroOffsetZ) / gyroSensitivity;
+  
+  // Update Yaw Angle (Integration)
+  yawAngle += currentYawRate * dt; 
+
+  // --- C. Pixy2 Vector Logic ---
+  int8_t res = pixy.line.getMainFeatures();
+  
+  if (res > 0 && pixy.line.numVectors > 0) {
+    int x0 = pixy.line.vectors[0].m_x0;
+    int y0 = pixy.line.vectors[0].m_y0;
+    int x1 = pixy.line.vectors[0].m_x1;
+    int y1 = pixy.line.vectors[0].m_y1;
+
+    // Vector Direction Compensation
+    if (y1 > y0) {
+      int tx = x0; x0 = x1; x1 = tx;
+      int ty = y0; y0 = y1; y1 = ty;
+    }
+
+    // Line Heading & Offset
+    float dx = x1 - x0;
+    float dy = y0 - y1; 
+    float lineHeading = atan2(dx, dy) * 180.0 / PI;
+    float laneOffset = x0 - frameCenterX;
+
+    // --- D. Comparison & Derivative ---
+    float e = (lineHeading * 0.7) + (laneOffset * 0.3);
+    float de_dt = (e - lastError) / dt;
+    lastError = e;
+
+    // --- E. Comprehensive Serial Output ---
+    Serial.print("LineAng:");   Serial.print(lineHeading);   Serial.print(",");
+    Serial.print("YawRate:");   Serial.print(currentYawRate); Serial.print(",");
+    Serial.print("YawAngle:");  Serial.print(yawAngle);      Serial.print(",");
+    Serial.print("Offset:");    Serial.print(laneOffset);    Serial.print(",");
+    Serial.print("Error:");     Serial.print(e);             Serial.print(",");
+    Serial.print("de_dt:");     Serial.println(de_dt);
+
+  } else {
+    Serial.println("Searching_Line...");
+  }
+}
+
+int16_t readRawGyroZ() {
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x21); 
+  Wire.endTransmission();
+  Wire.requestFrom(ITG3205_ADDR, 2);
+  if (Wire.available() == 2) {
+    return (int16_t)(Wire.read() << 8 | Wire.read());
+  }
+  return 0;
+}
