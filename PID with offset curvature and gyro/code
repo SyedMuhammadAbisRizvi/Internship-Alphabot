@@ -1,0 +1,148 @@
+#include <Pixy2I2C.h>
+#include <Wire.h>
+
+// -------------------- PIXY --------------------
+Pixy2I2C pixy;
+
+// -------------------- GYRO --------------------
+#define ITG3205_ADDR 0x68
+
+// -------------------- MOTOR PINS --------------------
+#define ENA 5
+#define ENB 6
+#define IN1 A1
+#define IN2 A0
+#define IN3 A2
+#define IN4 A3
+
+// -------------------- PID CONSTANTS --------------------
+float Kp = 2.5;
+float Kd = 2.2;
+float Ky = 0.01;
+
+// ===================== SETTINGS =====================
+const int frameCenter = 39;     // camera center reference
+const int sideOffset  = 20;     // +right side, -left side
+
+// -------------------- SPEED --------------------
+int baseSpeed = 140;
+
+// -------------------- CALIBRATION --------------------
+float gyroOffsetZ = 0;
+
+// -------------------- STATE --------------------
+int lastError = 0;
+float filteredGyro = 0;
+
+// -------------------- GYRO READ --------------------
+int16_t readRawGyroZ() {
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x21);
+  Wire.endTransmission(false);
+  Wire.requestFrom(ITG3205_ADDR, 2);
+
+  if (Wire.available() >= 2) {
+    return (Wire.read() << 8) | Wire.read();
+  }
+  return 0;
+}
+
+// -------------------- MOTOR CONTROL --------------------
+void setMotor(int left, int right) {
+
+  left = constrain(left, -255, 255);
+  right = constrain(right, -255, 255);
+
+  digitalWrite(IN1, left >= 0 ? HIGH : LOW);
+  digitalWrite(IN2, left >= 0 ? LOW : HIGH);
+
+  digitalWrite(IN3, right >= 0 ? HIGH : LOW);
+  digitalWrite(IN4, right >= 0 ? LOW : HIGH);
+
+  analogWrite(ENA, abs(left));
+  analogWrite(ENB, abs(right));
+}
+
+// -------------------- SETUP --------------------
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+
+  pixy.init();
+  pixy.changeProg("line");
+
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+
+  // wake gyro
+  Wire.beginTransmission(ITG3205_ADDR);
+  Wire.write(0x3E);
+  Wire.write(0x00);
+  Wire.endTransmission();
+
+  // gyro calibration
+  Serial.println("Calibrating Gyro...");
+  long sumZ = 0;
+
+  for (int i = 0; i < 1000; i++) {
+    sumZ += readRawGyroZ();
+    delay(2);
+  }
+
+  gyroOffsetZ = sumZ / 1000.0;
+
+  Serial.println("Gyro Ready");
+}
+
+// -------------------- LOOP --------------------
+void loop() {
+
+  // -------------------- GYRO PROCESSING --------------------
+  float yawRate = (readRawGyroZ() - gyroOffsetZ) / 14.375;
+
+  // deadband (removes drift noise)
+  if (abs(yawRate) < 1.0) {
+    yawRate = 0;
+  }
+
+  // smoothing filter (VERY important)
+  filteredGyro = 0.9 * filteredGyro + 0.1 * yawRate;
+
+  float gyroCorrection = filteredGyro * Ky;
+
+  // -------------------- PIXY LINE --------------------
+  if (pixy.line.getMainFeatures() > 0) {
+
+    int x0 = pixy.line.vectors[0].m_x0;
+    int x1 = pixy.line.vectors[0].m_x1;
+
+    // 
+   int frameCenter = 39;
+
+int lineCenter = (x0 + x1) / 2;
+int target = frameCenter + sideOffset;
+
+int error = lineCenter - target;
+
+int curvature = error - lastError;
+
+lastError = error;
+
+    // -------------------- STEERING --------------------
+    float steering = (error * Kp) + (curvature * Kd) - gyroCorrection;
+
+    // safety clamp (prevents runaway turning)
+    steering = constrain(steering, -120, 120);
+
+    // -------------------- MOTORS --------------------
+    setMotor(baseSpeed - steering, baseSpeed + steering);
+
+  } else {
+    // line lost → stop
+    setMotor(0, 0);
+  }
+}
